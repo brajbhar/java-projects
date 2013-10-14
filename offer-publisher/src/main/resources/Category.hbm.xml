@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.publisher.admin.domain">
+	<class name="Category" table="tbl_category">
+		<id name="id" column="category_id">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="category_name" type="string"/>
+		<property name="description" column="category_description" type="string"/>
+		<property name="parentCategoryId" column="parent_category_id" type="integer"/>
+		
+		<set name="subCategories" inverse="true" 
+				lazy="false" fetch="select"> 
+				<key>
+					<column name="parent_category_id" not-null="false"/>
+				</key>
+				
+				<one-to-many class="Category"/>
+		</set>
+		<many-to-one name="parent" class="Category" fetch="select" update="false" insert="false">
+			<column name="parent_category_id" not-null="false"/>
+		</many-to-one> 
+	</class>
+</hibernate-mapping>
