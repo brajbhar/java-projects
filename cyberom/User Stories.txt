@@ -1,0 +1,27 @@
+Cybercafe Management System 
+
+
+## Modules ##
+
+1. User Management
+	Features: Register cybercafe, login logout and forgot password.
+
+2. Visitors Management
+	Features: Add, edit, update, list and search visitor. 
+			  Add, edit, update, list and search visits.
+			  Capture visitors photo.
+
+3. Policing Module
+    Features: 
+
+4. Assets Management
+    Features: Assign System, 
+    		  check system availability, 
+    		  check system history, 
+    		  Time up notification,
+    		  Visitor and System dashboard.
+
+5. Billing Module
+
+6. Messaging & Mailing Module
+

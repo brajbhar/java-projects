@@ -1,0 +1,10 @@
+Ajax loader Symbol Generator
+http://www.ajaxload.info/
+
+http://stackoverflow.com/questions/11961438/how-to-implement-a-loading-indicator-for-a-bootstrap-modal-waiting-for-ajax-to-f
+
+
+http://plnkr.co/edit/s4jJAOqehBkFUC9osMsy?p=preview
+
+Find a PID using a port windows: netstat -a -n -o | find "8080"
+Kill a process forcefully: Taskkill /PID 5616 /F
