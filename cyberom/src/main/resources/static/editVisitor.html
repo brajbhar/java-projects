@@ -1,0 +1,243 @@
+<div class="container-fluid" ng-controller="EditVisitorController">
+	<div class="row">
+		<div class="col-md-10">
+			<h2>Edit Visitor</h2>
+		</div>
+		<div class="col-md-2">
+			<a href="#/listVisitors" class="btn btn-primary pull-right">Back</a>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-danger" role="alert" ng-show="showSomethingWentWrongAlert" style="margin-bottom: 0px;">
+				<b>{{errorMessage}}</b>
+			</div>
+		</div>
+	</div>
+	<form ng-submit="saveVisitor(form)" name="form" novalidate>
+	<div class="row">
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					    <label for="name">First Name <span class="required-mark">*</span></label>
+					    <input type="text" class="form-control" 
+					    	id="firstName" ng-model="visitor.firstName" 
+					    	placeholder="Enter first name" name="firstName" required
+					    	>
+					    <div ng-if="form.firstName.$dirty" class="help-block">
+				    		<div ng-messages="form.firstName.$error" style="color: #e74c3c;">
+		                        <div ng-message="required">First name is required</div>
+		                    </div>
+				    	</div>	
+				  	</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					    <label for="name">Last Name <span class="required-mark">*</span></label>
+					    <input type="text" class="form-control" 
+					    	id="lastName" ng-model="visitor.lastName" 
+					    	placeholder="Enter last name" name="lastName" required
+					    	>
+					    <div ng-if="form.lastName.$dirty" class="help-block">
+				    		<div ng-messages="form.lastName.$error" style="color: #e74c3c;">
+		                        <div ng-message="required">Last name is required</div>
+		                    </div>
+				    	</div>	
+				  	</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					    <label for="name">Age</span></label>
+					    <input type="text" class="form-control" 
+					    	id="age" ng-model="visitor.age" 
+					    	placeholder="Enter age" name="age" numeric
+					    	>
+					    <div ng-if="form.age.$dirty" class="help-block">
+				    		<div ng-messages="form.age.$error" style="color: #e74c3c;">
+		                        <div ng-message="numeric">Invalid age</div>
+		                    </div>
+				    	</div>	
+				  	</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					    <label for="sex">Sex <span class="required-mark">*</span></label>
+					    <select class="form-control" id="sex"
+					    	ng-model="visitor.sex"	name="sex" required>
+					    	 <option value="">Select Gender</option>
+						 	 <option value="Male">Male</option>
+						 	 <option value="Female">Female</option>
+						</select>
+						<div ng-if="form.sex.$dirty" class="help-block">
+				    		<div ng-messages="form.sex.$error" style="color: #e74c3c;">
+		                        <div ng-message="required">Please select sex</div>
+		                    </div>
+				    	</div>	
+				  	</div>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+				    <label for="name">Address Line 1</span></label>
+				    <input type="text" class="form-control" 
+				    	id="addressLine1" ng-model="visitor.address.addressLine1" 
+				    	placeholder="Enter address line 1" name="addressLine1">
+			  	</div>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="form-group">
+				    <label for="name">Address Line 2</label>
+				    <input type="text" class="form-control" 
+				    	id="addressLine2" ng-model="visitor.address.addressLine2" 
+				    	placeholder="Enter address line 2" name="addressLine2">
+			  	</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+				    <label for="state">State <span class="required-mark">*</span></label>
+				    <select class="form-control" 
+				    	 id="state"
+				    	 name="state" 
+				    	 ng-model="visitor.address.state" 
+				    	 ng-options="state.name for state in states"
+				    	 ng-change="populateCities();" required>
+				    	 <option value="">Select a state</option>
+					</select>
+					<div ng-if="form.state.$dirty" class="help-block">
+			    		<div ng-messages="form.state.$error" style="color: #e74c3c;">
+	                        <div ng-message="required">State is required</div>
+	                    </div>
+			    	</div>	
+			  	</div>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="form-group">
+				    <label for="city">city <span class="required-mark">*</span></label>
+				    <select class="form-control" id="city"
+				    	ng-model="visitor.address.city"
+				    	name="city" 
+				    	 ng-options="city.name for city in cities" required>
+				    	 <option value="">Select a city</option>
+					 
+					</select>
+					<div ng-if="form.city.$dirty" class="help-block">
+			    		<div ng-messages="form.city.$error" style="color: #e74c3c;">
+	                        <div ng-message="required">City is required</div>
+	                    </div>
+			    	</div>	
+			  	</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6">
+			<div class="form-group">
+			    <label for="pin">Pin Code</label>
+			    <input type="text" class="form-control" 
+			    	id="pin" ng-model="visitor.address.pin" name="pin"
+			    	placeholder="Enter pin code" numeric>
+				    <div ng-if="form.pin.$dirty" class="help-block">
+			    		<div ng-messages="form.pin.$error" style="color: #e74c3c;">
+	                        <div ng-message="numeric">Invalid pin code</div>
+	                    </div>
+			    	</div>	
+			  	</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+				    <label for="name">Mobile Number <span class="required-mark">*</span></label>
+				    <input type="text" class="form-control" 
+				    	id="mobileNumber" ng-model="visitor.mobile" 
+				    	placeholder="Enter mobile number" name="mobileNumber" required
+				    	>
+				    <div ng-if="form.mobileNumber.$dirty" class="help-block">
+			    		<div ng-messages="form.mobileNumber.$error" style="color: #e74c3c;">
+	                        <div ng-message="required">Mobile number is required</div>
+	                    </div>
+			    	</div>	
+			  	</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+				    <label for="idCardType">Type of ID Card  <span class="required-mark">*</span></label>
+				    <select class="form-control" id="typeOfIdCard"
+				    	ng-model="visitor.idCardType"
+				    	name="typeOfIdCard" 
+				    	 ng-options="typeOfIdCard.name for typeOfIdCard in typesOfIdCards" required>
+				    	 <option value="">Select ID card type</option>
+					 
+					</select>
+					<div ng-if="form.typeOfIdCard.$dirty" class="help-block">
+			    		<div ng-messages="form.typeOfIdCard.$error" style="color: #e74c3c;">
+	                        <div ng-message="required">Please select type of id card</div>
+	                    </div>
+			    	</div>	
+			  	</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+			    <label for="idCardNumber">ID Card Number</label>
+			    <input type="text" class="form-control" 
+			    	id="idCardNumber" ng-model="visitor.idCardNumber" name="idCardNumber"
+			    	placeholder="Enter id card number" numeric>
+				    <div ng-if="form.idCardNumber.$dirty" class="help-block">
+			    		<div ng-messages="form.idCardNumber.$error" style="color: #e74c3c;">
+	                        <div ng-message="required">Id card number is required</div>
+	                    </div>
+			    	</div>	
+			  	</div>	
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="form-group">
+				    <!-- <label for="name">Photo</label>
+				    
+				    <ng-camera
+					    capture-message="Cheeeese!"
+					    countdown="3"
+					    output-height="300"
+					    output-width="640"
+					    viewer-height="240"
+					    viewer-width="255"
+					    image-format="jpeg"
+					    jpeg-quality="100"
+					    action-message="Take picture"
+					    snapshot="picture"
+					    flash-fallback-url="/vendors/webcamjs/webcam.swf"
+					    overlay-url="/images/overlay.png"
+					    shutter-url="/shutter.mp3"
+					    crop-height="480"
+					    crop-width="480"
+					   ></ng-camera> -->
+				 </div>
+			 </div>
+		</div>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		<a href="#" class="btn btn-primary" ng-click="saveVisitor()" ng-disabled='form.$invalid'>Save Visitor</a>
+		<a href="#" class="btn btn-default">Reset</a>
+		</div>
+	
+	</div>
+	</form>
+</div>

@@ -2,34 +2,28 @@
  * 
  */
 
-module.controller('ListVisitorController', function($scope, $location, 
+module.controller('ListVisitorController', function($scope, 
 		StateService, 
 		VisitorService,
 		FilterAndPaginationUtils,
-		usSpinnerService) {
+		usSpinnerService,
+		SpinnerUtils) {
 	
 	$scope.visitorSearchFilter = {};
 	
-	$scope.startSpin = function(){
-        usSpinnerService.spin('spinner');
-    }
-    $scope.stopSpin = function(){
-        usSpinnerService.stop('spinner');
-    }
-    
     $scope.visitorSearchFilter.pageNumber = 1;
 	$scope.visitorSearchFilter.pageSize = 5;
     
     getVisitors();
 	
 	function getVisitors() {
-		$scope.startSpin();
+		SpinnerUtils.startSpinner('spinner');
 		VisitorService.getVisitors(createVisitorFilter())
 		.then(function(data){
 			$scope.visitors = data.content;
 			$scope.visitorSearchFilter = FilterAndPaginationUtils.
 				populatePagingDataIntoFilter(data, $scope.visitorSearchFilter);
-			$scope.stopSpin();
+			SpinnerUtils.stopSpinner('spinner');
 		});
 	};
 	
