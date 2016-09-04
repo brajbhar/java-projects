@@ -21,7 +21,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li ui-sref-active="active">
-              <a ui-sref="manageVisitors">Visitors</a>
+              <a ui-sref="listVisitors">Visitors</a>
             </li>
              <li ui-sref-active="active">
               <a href="../help/">Systems</a>
@@ -65,7 +65,7 @@
       </div>
     </div>
 <br><br><br>
-
+<span us-spinner spinner-key="spinner"></span>
 <div ui-view class="container-fluid" ></div>
 
 
@@ -88,6 +88,7 @@
     <script src="js/services/StateService.js"></script>
     <script src="js/services/CybercafeService.js"></script>
     <script src="js/services/VisitorService.js"></script>
+    <script src="js/services/FilterAndPaginationUtils.js"></script>
     <script src="js/controllers/NavigationController.js"></script>
     <script src="js/controllers/RegistrationController.js"></script>
     <script src="js/controllers/VisitorController.js"></script>

@@ -32,7 +32,7 @@ module.controller("NavigationController", ['$location', '$rootScope', '$scope','
 	  $scope.login = function(){
 		  authenticate($scope.credentials, function(){
 			if($rootScope.authenticated) {
-				$location.path("/manageVisitor");
+				$location.path("/listVisitors");
 				$scope.error = false;
 			} else {
 				$location.path("/login");
