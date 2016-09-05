@@ -14,19 +14,15 @@ module.config(function($urlRouterProvider, $stateProvider, $httpProvider){
 	})
 	.state('addVisitor', {
 		url: '/addVisitor',
-		templateUrl: 'addVisitor.html',
+		templateUrl: 'add-visitor.html',
 	})
 	.state('editVisitor',{
 		url: '/editVisitor/:visitorId',
-		templateUrl: 'editvisitor.html'
+		templateUrl: 'edit-Visitor.html',
 	})
 	.state('login', {
 		url: '/login',
 		templateUrl: 'login.html'
-	})
-	.state('manageVisitors',{
-		url: '/manageVisitor',
-		templateUrl: 'manage-visitors.html'
 	})
 	.state('listVisitors', {
 		url: '/listVisitors',

@@ -8,6 +8,7 @@ module.controller('EditVisitorController', function($scope, $http, $location, $s
 		usSpinnerService,
 		SpinnerUtils) {
 	
+	$scope.showSomethingWentWrongAlert = false;
 	$scope.visitor = {};
 	SpinnerUtils.startSpinner('spinner')
 	var visitorId = $stateParams.visitorId;

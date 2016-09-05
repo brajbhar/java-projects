@@ -9,6 +9,7 @@ module.controller('AddVisitorController', function($scope, $http, $location, $st
 		usSpinnerService,
 		SpinnerUtils) {
 	
+	$scope.showSomethingWentWrongAlert = false;
 	$scope.visitor = {};
 	SpinnerUtils.startSpinner();
 	StateService.getStates()
