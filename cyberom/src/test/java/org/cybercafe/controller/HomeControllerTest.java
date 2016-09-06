@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -26,6 +27,7 @@ public class HomeControllerTest extends BaseControllerTest {
 		mvc = MockMvcBuilders.standaloneSetup(new HomeController()).build();
 	}
 	
+	@Ignore
 	@Test
 	public void getGreetings() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))

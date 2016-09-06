@@ -27,6 +27,10 @@ module.config(function($urlRouterProvider, $stateProvider, $httpProvider){
 	.state('listVisitors', {
 		url: '/listVisitors',
 		templateUrl: 'manage-visitors.html',
+	})
+	.state('listSystems', {
+		url: 'listSystems',
+		templateUrl: 'manage-systems.html'
 	});
 	
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

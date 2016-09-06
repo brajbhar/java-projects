@@ -37,4 +37,12 @@ public class ComputerRepositoryTest extends AbstractRepositoryTest {
 		CybercafeTestDataUtility.assertComputer(computer, computerSaved);
 		
 	}
+	
+	@Test
+	public void testFindAllWithPaging() {
+		int pageNumber = 0;
+		int pageSize = 5;
+		
+		
+	}
 }

@@ -40,7 +40,7 @@ public class VisitorSpecification implements Specification<Visitor> {
 		if(StringUtils.isNotBlank(visitor.getLastName())) {
 			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("lastName")), visitor.getLastName().toLowerCase() + "%"));
 		}
-		if(StringUtils.isNoneBlank(visitor.getMobile())) {
+		if(StringUtils.isNotBlank(visitor.getMobile())) {
 			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("mobile")), visitor.getMobile() + "%"));
 		}
 		if(visitor.getCybercafe()!= null && visitor.getCybercafe().getId() != null) {

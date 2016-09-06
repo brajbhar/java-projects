@@ -3,6 +3,7 @@ package org.cybercafe.controller;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -15,6 +16,7 @@ public class VisitorControllerTest extends BaseControllerTest {
 		mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 	
+	@Ignore
 	@Test
 	public void testGetVisitors() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/rest/visitors").accept(MediaType.APPLICATION_JSON))
