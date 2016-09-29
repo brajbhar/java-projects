@@ -204,14 +204,14 @@ INSERT INTO tbl_visitor (id,first_name,last_name,age,sex,address_id,mobile,cyber
  (12,'Naresh','Rajbhar',20,'Male',1,'9819034283',1,'342730',3,NULL,'2016-06-23 22:16:45');
 
  
- INSERT INTO tbl_system (id, name, serial, status_id, cybercafe_id, updated_on, update_by) VALUES
- (1, 'System1', 'ABC', 1, 1, '2016-06-23 22:16:45', NULL),
- (2, 'System2', 'EFG', 1, 1, '2016-06-23 22:16:45', NULL),
- (3, 'System3', 'HIJ', 1, 1, '2016-06-23 22:16:45', NULL),
- (4, 'System4', 'KLM', 1, 1, '2016-06-23 22:16:45', NULL),
- (5, 'System5', 'NOP', 1, 1, '2016-06-23 22:16:45', NULL),
- (6, 'System6', 'QRS', 1, 1, '2016-06-23 22:16:45', NULL),
- (7, 'System7', 'TUV', 1, 1, '2016-06-23 22:16:45', NULL),
- (8, 'System8', 'WXY', 1, 1, '2016-06-23 22:16:45', NULL),
- (9, 'System9', 'ZAB', 1, 1, '2016-06-23 22:16:45', NULL),
- (10, 'System10', 'CDF', 1, 1, '2016-06-23 22:16:45', NULL);
+ INSERT INTO tbl_system (id, name, serial, status_id, cybercafe_id, updated_on, updated_by) VALUES
+ (1, 'System1', 'ABC', 1, 1, '2016-06-23 22:16:45', 1),
+ (2, 'System2', 'EFG', 1, 1, '2016-06-23 22:16:45', 1),
+ (3, 'System3', 'HIJ', 1, 1, '2016-06-23 22:16:45', 1),
+ (4, 'System4', 'KLM', 1, 1, '2016-06-23 22:16:45', 1),
+ (5, 'System5', 'NOP', 1, 1, '2016-06-23 22:16:45', 1),
+ (6, 'System6', 'QRS', 1, 1, '2016-06-23 22:16:45', 1),
+ (7, 'System7', 'TUV', 1, 1, '2016-06-23 22:16:45', 1),
+ (8, 'System8', 'WXY', 1, 1, '2016-06-23 22:16:45', 1),
+ (9, 'System9', 'ZAB', 1, 1, '2016-06-23 22:16:45', 1),
+ (10, 'System10', 'CDF', 1, 1, '2016-06-23 22:16:45', 1);

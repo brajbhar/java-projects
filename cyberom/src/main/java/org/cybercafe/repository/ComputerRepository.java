@@ -3,9 +3,10 @@
  */
 package org.cybercafe.repository;
 
-import java.util.List;
-
 import org.cybercafe.model.Computer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -20,6 +21,6 @@ JpaSpecificationExecutor<Computer>{
 	
 	Computer findOne(Long id);
 	
-	List<Computer> findAll();
+	Page<Computer> findAll(Specification specification, Pageable pageable);
 
 }
