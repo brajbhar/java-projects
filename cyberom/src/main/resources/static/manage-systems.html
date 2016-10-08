@@ -1,0 +1,39 @@
+<div class="container-fluid" ng-controller="ListSystemController">
+<div class="row">
+		<div class="col-md-10">
+			<h2>Manage Systems</h2>
+		</div>
+		<div class="col-md-2">
+			<a href="#/addSystem" class="btn btn-primary pull-right">Add System</a>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+		<div class="col-md-10">
+			<table class="table">
+			<thead>
+				<tr>
+					<th>Sr No</th>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Sex</th>
+					<th>Mobile</th>
+					<th>Address</th>
+					<th></th>
+				</tr>
+				</thead>
+				<tr ng-repeat="visitor in visitors">
+					<td>{{($index+1) + (visitorSearchFilter.pageNumber-1) * visitorSearchFilter.pageSize}}</td>
+					<td>{{visitor.firstName}} {{visitor.lastName}}</td>
+					<td>{{visitor.age}}</td>
+					<td>{{visitor.sex}}</td>
+					<td>{{visitor.mobile}}</td>
+					<td>{{visitor.address.addressLine1}}, {{visitor.address.addressLine2}}</td>
+					<td>
+						<a href="#/editVisitor" ui-sref="editVisitor({visitorId: visitor.id})" class="btn btn-primary">Edit</a> &nbsp;
+				</tr>
+			</table>
+		</div>
+	</div>
+	

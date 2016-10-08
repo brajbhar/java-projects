@@ -45,11 +45,7 @@ public class VisitorController {
 		return visitorService.editVisitor(visitor);
 	}
 	
-	/*@RequestMapping(value = REST_VISITORS_URL, method = RequestMethod.GET)
-	public List<Visitor> getVisitors(){
-		return visitorService.getVisitors();
-	}*/
-	
+		
 	@RequestMapping(value = REST_VISITORS_URL, method = RequestMethod.GET)
 	public Page<Visitor> getVisitorsByPaging(
 			@RequestParam("mobileNumber") String mobileNumber,
@@ -65,7 +61,7 @@ public class VisitorController {
 		visitorSearchFilter.setFirstName(firstName);
 		visitorSearchFilter.setLastName(lastName);
 		visitorSearchFilter.setPageNumber(pageNumber);
-		visitorSearchFilter.setPageSize(5);
+		visitorSearchFilter.setPageSize(pageSize);
 		visitorSearchFilter.setCybercafe(cybercafe);
 		return visitorService.getVisitors(visitorSearchFilter);
 	}

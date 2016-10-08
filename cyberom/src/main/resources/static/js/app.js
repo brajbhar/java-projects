@@ -29,7 +29,7 @@ module.config(function($urlRouterProvider, $stateProvider, $httpProvider){
 		templateUrl: 'manage-visitors.html',
 	})
 	.state('listSystems', {
-		url: 'listSystems',
+		url: '/listSystems',
 		templateUrl: 'manage-systems.html'
 	});
 	
