@@ -23,6 +23,17 @@ module.factory('FilterAndPaginationUtils', [function(){
 		return filter;
 	};
 	
+	factory.buildQueryString = function buildQueryString(filters) {
+		var queryString = "?";
+		for(var i=0; i<filters.length;i++) {
+			var filter = filters[i];
+			if(i > 0) {
+				queryString += "&";
+			}
+			queryString += filter.name + "=" + filter.value;
+		}
+		return queryString;
+	};
 	
 	return factory;
 	

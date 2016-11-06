@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-public class ComputerController {
+public class SystemController {
 	
 	@Autowired
 	private ComputerService computerService;
