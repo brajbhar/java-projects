@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_system")
-public class Computer extends AbstractEntity {
+public class System extends AbstractEntity {
 	
 	@Column(name = "name")
 	private String name;

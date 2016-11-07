@@ -4,7 +4,7 @@
 package org.cybercafe.repository;
 
 import org.cybercafe.AbstractRepositoryTest;
-import org.cybercafe.model.Computer;
+import org.cybercafe.model.System;
 import org.cybercafe.utils.CybercafeTestDataUtility;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,10 +16,10 @@ import org.springframework.data.domain.PageRequest;
  * @author Bablu
  *
  */
-public class ComputerRepositoryTest extends AbstractRepositoryTest {
+public class SystemRepositoryTest extends AbstractRepositoryTest {
 
 	@Autowired
-	private ComputerRepository computerRepository;
+	private SystemRepository computerRepository;
 	
 	@Autowired
 	private CybercafeRepository cybercafeRepository;
@@ -33,10 +33,10 @@ public class ComputerRepositoryTest extends AbstractRepositoryTest {
 	
 	@Test
 	public void testSave() {
-		Computer computer = CybercafeTestDataUtility.getComputer(
+		System computer = CybercafeTestDataUtility.getComputer(
 				cybercafeRepository.findOne(1L), statusRepository.findOne(1L), 
 				userRepository.findOne(1L));
-		Computer computerSaved = computerRepository.save(computer);
+		System computerSaved = computerRepository.save(computer);
 		CybercafeTestDataUtility.assertComputer(computer, computerSaved);
 		
 	}
@@ -46,10 +46,10 @@ public class ComputerRepositoryTest extends AbstractRepositoryTest {
 		int pageNumber = 0;
 		int pageSize = 5;
 		
-		Computer computer = new Computer();
-		ComputerSpecification specification = new ComputerSpecification(computer);
+		System computer = new System();
+		SystemSpecification specification = new SystemSpecification(computer);
 		
-		Page<Computer> computers = computerRepository.findAll(specification, new PageRequest(pageNumber, pageSize));
+		Page<System> computers = computerRepository.findAll(specification, new PageRequest(pageNumber, pageSize));
 		Assert.assertNotNull(computers);
 		Assert.assertTrue(computers.getContent().size() == pageSize);
 		

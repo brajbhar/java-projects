@@ -9,19 +9,19 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
-import org.cybercafe.model.Computer;
+import org.cybercafe.model.System;
 import org.springframework.data.jpa.domain.Specification;
 
-public class ComputerSpecification implements Specification<Computer> {
+public class SystemSpecification implements Specification<System> {
 	
-	private final Computer computer;
+	private final System computer;
 	
-	public ComputerSpecification(Computer computer) {
+	public SystemSpecification(System computer) {
 		this.computer = computer;
 	}
 
 	@Override
-	public Predicate toPredicate(Root<Computer> root, CriteriaQuery<?> criteriaQuery, 
+	public Predicate toPredicate(Root<System> root, CriteriaQuery<?> criteriaQuery, 
 			CriteriaBuilder criteriaBuilder) {
 		List<Predicate> predicates = new ArrayList<>();
 		if(StringUtils.isNotBlank(computer.getName())) {

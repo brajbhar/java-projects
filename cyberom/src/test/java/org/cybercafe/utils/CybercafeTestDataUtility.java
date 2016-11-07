@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import org.cybercafe.model.Address;
 import org.cybercafe.model.City;
-import org.cybercafe.model.Computer;
+import org.cybercafe.model.System;
 import org.cybercafe.model.Cybercafe;
 import org.cybercafe.model.IDCardType;
 import org.cybercafe.model.State;
@@ -37,7 +37,7 @@ public class CybercafeTestDataUtility {
 				.equals(expectedCybercafe.getStatus().getName()));
 	}
 	
-	public static void assertComputer(Computer expected, Computer actual) {
+	public static void assertComputer(System expected, System actual) {
 		Assert.assertNotNull("actual comouter Object is null", actual);
 		Assert.assertTrue("computer name not matching", 
 				actual.getName().equals(expected.getName()));
@@ -153,8 +153,8 @@ public class CybercafeTestDataUtility {
 		return type;
 	}
 	
-	public static Computer getComputer(Cybercafe cybercafe, Status status, User user) {
-		Computer computer = new Computer();
+	public static System getComputer(Cybercafe cybercafe, Status status, User user) {
+		System computer = new System();
 		computer.setCybercafe(cybercafe);
 		computer.setName("computer1");
 		computer.setSerial("12345");

@@ -3,7 +3,7 @@
  */
 package org.cybercafe.repository;
 
-import org.cybercafe.model.Computer;
+import org.cybercafe.model.System;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -14,13 +14,13 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author Bablu
  *
  */
-public interface ComputerRepository extends PagingAndSortingRepository<Computer, Long>, 
-JpaSpecificationExecutor<Computer>{
+public interface SystemRepository extends PagingAndSortingRepository<System, Long>, 
+JpaSpecificationExecutor<System>{
 	
-	Computer save(Computer computer);
+	System save(System system);
 	
-	Computer findOne(Long id);
+	System findOne(Long id);
 	
-	Page<Computer> findAll(Specification specification, Pageable pageable);
+	Page<System> findAll(Specification specification, Pageable pageable);
 
 }

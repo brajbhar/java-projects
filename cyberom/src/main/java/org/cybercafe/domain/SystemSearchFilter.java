@@ -1,8 +1,8 @@
 package org.cybercafe.domain;
 
-import org.cybercafe.model.Computer;
+import org.cybercafe.model.System;
 
-public class ComputerSearchFilter extends Computer {
+public class SystemSearchFilter extends System {
 	
 	
 	private int pageNumber;
