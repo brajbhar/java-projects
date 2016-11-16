@@ -28,7 +28,7 @@ public class SystemController {
 	
 	@RequestMapping(value = REST_COMPUTERS_URL, method = RequestMethod.GET)
 	public List<System> getComputersByPaging(Principal principal,
-			@RequestParam("name") String computerName,
+			@RequestParam("name") String systemName,
 			@RequestParam("serial") String serial,
 			@RequestParam("pageNumber") String pageNumber,
 			@RequestParam("pageSize") String pageSize) {

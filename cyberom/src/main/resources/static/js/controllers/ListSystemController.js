@@ -24,9 +24,9 @@ module.controller('ListSystemController', function($scope,
 	
 	function createSystemFilter() {
 		var filterFields = [];
-		filterFields.push(buildFilter("mobileNumber", 
+		filterFields.push(buildFilter("name", 
 				$scope.visitorSearchFilter.mobile));
-		filterFields.push(buildFilter("firstName", 
+		filterFields.push(buildFilter("serial", 
 				$scope.visitorSearchFilter.firstName));
 		filterFields.push(buildFilter("lastName", 
 				$scope.visitorSearchFilter.lastName));
@@ -35,7 +35,16 @@ module.controller('ListSystemController', function($scope,
 		filterFields.push(buildFilter("pageSize", 
 				$scope.visitorSearchFilter.pageSize));
 		return FilterAndPaginationUtils.createFilter(filterFields);
-	}
+	};
+	
+	function buildFilter(name, value) {
+		var filter = {};
+		filter.name = name;
+		filter.value = value ? value : '';
+		return filter;
+	};
+	
+	
 	
 	
 });

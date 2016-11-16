@@ -23,7 +23,7 @@ module.factory('FilterAndPaginationUtils', [function(){
 		return filter;
 	};
 	
-	factory.buildQueryString = function buildQueryString(filters) {
+	/*factory.buildQueryString = function buildQueryString(filters) {
 		var queryString = "?";
 		for(var i=0; i<filters.length;i++) {
 			var filter = filters[i];
@@ -31,6 +31,22 @@ module.factory('FilterAndPaginationUtils', [function(){
 				queryString += "&";
 			}
 			queryString += filter.name + "=" + filter.value;
+		}
+		return queryString;
+	};*/
+	
+	factory.buildQueryString = function(searchFilter) {
+		var queryString = "?";
+		var i = 0;
+		for(var key in searchFilter) {
+			if(i > 0) {
+				queryString += "&";
+			}
+			if(searchFilter.hasOwnProperty(key)) {
+				queryString += key + "=" + searchFilter[key];
+				i = i + 1;
+			}
+			
 		}
 		return queryString;
 	};
