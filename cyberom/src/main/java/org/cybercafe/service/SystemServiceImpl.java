@@ -5,6 +5,7 @@ package org.cybercafe.service;
 
 import org.cybercafe.domain.SystemSearchFilter;
 import org.cybercafe.model.System;
+import org.cybercafe.repository.StatusRepository;
 import org.cybercafe.repository.SystemRepository;
 import org.cybercafe.repository.SystemSpecification;
 import org.springframework.beans.factory.annotation.Autowired;

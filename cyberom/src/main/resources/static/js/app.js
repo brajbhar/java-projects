@@ -31,6 +31,10 @@ module.config(function($urlRouterProvider, $stateProvider, $httpProvider){
 	.state('listSystems', {
 		url: '/listSystems',
 		templateUrl: 'manage-systems.html'
+	})
+	.state('addSystem', {
+		url:'/addSystem',
+		templateUrl:'add-system.html'
 	});
 	
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

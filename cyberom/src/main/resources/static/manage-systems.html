@@ -16,20 +16,14 @@
 				<tr>
 					<th>Sr No</th>
 					<th>Name</th>
-					<th>Age</th>
-					<th>Sex</th>
-					<th>Mobile</th>
-					<th>Address</th>
+					<th>Serial No.</th>
 					<th></th>
 				</tr>
 				</thead>
-				<tr ng-repeat="visitor in visitors">
-					<td>{{($index+1) + (visitorSearchFilter.pageNumber-1) * visitorSearchFilter.pageSize}}</td>
-					<td>{{visitor.firstName}} {{visitor.lastName}}</td>
-					<td>{{visitor.age}}</td>
-					<td>{{visitor.sex}}</td>
-					<td>{{visitor.mobile}}</td>
-					<td>{{visitor.address.addressLine1}}, {{visitor.address.addressLine2}}</td>
+				<tr ng-repeat="system in systems">
+					<td>{{($index+1) + (systemSearchFilter.pageNumber-1) * systemSearchFilter.pageSize}}</td>
+					<td>{{system.name}}</td>
+					<td>{{system.serial}}</td>
 					<td>
 						<a href="#/editVisitor" ui-sref="editVisitor({visitorId: visitor.id})" class="btn btn-primary">Edit</a> &nbsp;
 				</tr>

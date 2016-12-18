@@ -28,25 +28,15 @@ module.controller('ListVisitorController', function($scope,
 	};
 	
 	function createVisitorFilter() {
-		var filterFields = [];
-		filterFields.push(buildFilter("mobileNumber", 
-				$scope.visitorSearchFilter.mobile));
-		filterFields.push(buildFilter("firstName", 
-				$scope.visitorSearchFilter.firstName));
-		filterFields.push(buildFilter("lastName", 
-				$scope.visitorSearchFilter.lastName));
-		filterFields.push(buildFilter("pageNumber", 
-				$scope.visitorSearchFilter.pageNumber));
-		filterFields.push(buildFilter("pageSize", 
-				$scope.visitorSearchFilter.pageSize));
-		return FilterAndPaginationUtils.createFilter(filterFields);
-	}
-	
-	function buildFilter(name, value) {
-		var filter = {};
-		filter.name = name;
-		filter.value = value ? value : '';
-		return filter;
+		var searchFilter = {
+				"mobileNumber" : $scope.visitorSearchFilter.mobile ? $scope.visitorSearchFilter.mobile : '',
+				"firstName" : $scope.visitorSearchFilter.firstName ? $scope.visitorSearchFilter.firstName : '',
+				"lastName" : $scope.visitorSearchFilter.lastName ? $scope.visitorSearchFilter.lastName : '',
+				"pageNumber" : $scope.visitorSearchFilter.pageNumber ? $scope.visitorSearchFilter.pageNumber : '',
+				"pageSize" : $scope.visitorSearchFilter.pageSize ? $scope.visitorSearchFilter.pageSize : ''
+		};
+		
+		return searchFilter;
 	}
 	
 	$scope.applyVisitorFilterByPageNumber = function(pageNumber) {

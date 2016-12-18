@@ -1,8 +1,8 @@
 /**
  * 
  */
-module.factory('SystemService', ['$http','$q','FilterAndPaginationUtils',
-                                 function($http, $q, FilterAndPaginationUtils){
+module.factory('SystemService', ['$http','$q','FilterAndPaginationUtils', 'RequestUtils',
+                                 function($http, $q, FilterAndPaginationUtils, RequestUtils){
 	
 	var factory = {};
 	
@@ -16,6 +16,11 @@ module.factory('SystemService', ['$http','$q','FilterAndPaginationUtils',
 	factory.getSystem = function(cybercafeId, systemId) {
 		
 	};
+	
+	factory.addSystem = function(system) {
+		var url = "rest/systems";
+		return RequestUtils.sendPostRequest(url, system);
+	}
 	
 	return factory;
 	

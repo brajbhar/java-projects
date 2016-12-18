@@ -9,13 +9,17 @@ module.controller('ListSystemController', function($scope,
 		SystemService) {
 	
 	$scope.systems = {};
+	$scope.system = {};
 	$scope.systemSearchFilter = {};
+	
+	$scope.systemSearchFilter.pageNumber = 1;
+	$scope.systemSearchFilter.pageSize = 5;
 	
 	function getSystems() {
 		SpinnerUtils.startSpinner('spinner');
-		SystemService.getSystems(createVisitorFilter())
+		SystemService.getSystems(createSystemFilter())
 		.then(function(data){
-			$scope.visitsystems = data.content;
+			$scope.systems = data.content;
 			$scope.systemSearchFilter = FilterAndPaginationUtils.
 				populatePagingDataIntoFilter(data, $scope.systemSearchFilter);
 			SpinnerUtils.stopSpinner('spinner');
@@ -23,28 +27,15 @@ module.controller('ListSystemController', function($scope,
 	};
 	
 	function createSystemFilter() {
-		var filterFields = [];
-		filterFields.push(buildFilter("name", 
-				$scope.visitorSearchFilter.mobile));
-		filterFields.push(buildFilter("serial", 
-				$scope.visitorSearchFilter.firstName));
-		filterFields.push(buildFilter("lastName", 
-				$scope.visitorSearchFilter.lastName));
-		filterFields.push(buildFilter("pageNumber", 
-				$scope.visitorSearchFilter.pageNumber));
-		filterFields.push(buildFilter("pageSize", 
-				$scope.visitorSearchFilter.pageSize));
-		return FilterAndPaginationUtils.createFilter(filterFields);
+		var searchFilter = {
+				"name" : $scope.systemSearchFilter.name ? $scope.visitorSearchFilter.name : '',
+				"serial" : $scope.systemSearchFilter.serial ? $scope.visitorSearchFilter.serial : '',
+				"pageNumber" : $scope.systemSearchFilter.pageNumber ? $scope.visitorSearchFilter.pageNumber : '',
+				"pageSize" : $scope.systemSearchFilter.pageSize ? $scope.visitorSearchFilter.pageSize : ''
+		};
+		
+		return searchFilter;
+		
 	};
-	
-	function buildFilter(name, value) {
-		var filter = {};
-		filter.name = name;
-		filter.value = value ? value : '';
-		return filter;
-	};
-	
-	
-	
 	
 });

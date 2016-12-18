@@ -44,6 +44,7 @@ module.controller('AddVisitorController', function($scope, $http, $location, $st
 			});
 			
 		} else {
+			SpinnerUtils.startSpinner();
 			VisitorService.save(getVisitorJSONData())
 			.then(function(visitor) {
 				$location.path("/listVisitors")
