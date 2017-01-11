@@ -8,12 +8,12 @@ module.controller('ListSystemController', function($scope,
 		SpinnerUtils,
 		SystemService) {
 	
-	$scope.systems = {};
-	$scope.system = {};
 	$scope.systemSearchFilter = {};
 	
 	$scope.systemSearchFilter.pageNumber = 1;
 	$scope.systemSearchFilter.pageSize = 5;
+	
+	getSystems();
 	
 	function getSystems() {
 		SpinnerUtils.startSpinner('spinner');
@@ -28,10 +28,10 @@ module.controller('ListSystemController', function($scope,
 	
 	function createSystemFilter() {
 		var searchFilter = {
-				"name" : $scope.systemSearchFilter.name ? $scope.visitorSearchFilter.name : '',
-				"serial" : $scope.systemSearchFilter.serial ? $scope.visitorSearchFilter.serial : '',
-				"pageNumber" : $scope.systemSearchFilter.pageNumber ? $scope.visitorSearchFilter.pageNumber : '',
-				"pageSize" : $scope.systemSearchFilter.pageSize ? $scope.visitorSearchFilter.pageSize : ''
+				"name" : $scope.systemSearchFilter.name ? $scope.systemSearchFilter.name : '',
+				"serial" : $scope.systemSearchFilter.serial ? $scope.systemSearchFilter.serial : '',
+				"pageNumber" : $scope.systemSearchFilter.pageNumber ? $scope.systemSearchFilter.pageNumber : '',
+				"pageSize" : $scope.systemSearchFilter.pageSize ? $scope.systemSearchFilter.pageSize : ''
 		};
 		
 		return searchFilter;

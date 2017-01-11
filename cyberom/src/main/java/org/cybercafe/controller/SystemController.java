@@ -41,9 +41,13 @@ public class SystemController {
 	public Page<System> getComputersByPaging(Principal principal,
 			@RequestParam("name") String systemName,
 			@RequestParam("serial") String serial,
-			@RequestParam("pageNumber") String pageNumber,
-			@RequestParam("pageSize") String pageSize) {
+			@RequestParam("pageNumber") Integer pageNumber,
+			@RequestParam("pageSize") Integer pageSize) {
 		SystemSearchFilter filter = new SystemSearchFilter();
+		filter.setName(systemName);
+		filter.setSerial(serial);
+		filter.setPageNumber(pageNumber);
+		filter.setPageSize(pageSize);
 		return systemService.getSystems(filter);
 	}
 	

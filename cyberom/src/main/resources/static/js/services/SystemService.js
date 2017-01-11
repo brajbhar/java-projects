@@ -8,7 +8,7 @@ module.factory('SystemService', ['$http','$q','FilterAndPaginationUtils', 'Reque
 	
 	factory.getSystems = function(systemSearchFilter) {
 		var queryString = 
-			FilterAndPaginationUtils.buildQueryStrin(systemSearchFilter);
+			FilterAndPaginationUtils.buildQueryString(systemSearchFilter);
 		var url = "rest/systems" + queryString;
 		return RequestUtils.sendGetRequest(url);
 	};

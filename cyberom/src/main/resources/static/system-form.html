@@ -27,11 +27,11 @@
 				<div class="form-group">
 					    <label for="name">Serial Number <span class="required-mark">*</span></label>
 					    <input type="text" class="form-control" 
-					    	id="serialNumber" ng-model="visitor.serialNumber" 
-					    	placeholder="Enter serial number" name="serialNumber" required
+					    	id="serial" ng-model="system.serial" 
+					    	placeholder="Enter serial number" name="serial" required
 					    	>
-					    <div ng-if="form.serialNumber.$dirty" class="help-block">
-				    		<div ng-messages="form.serialNumber.$error" style="color: #e74c3c;">
+					    <div ng-if="form.serial.$dirty" class="help-block">
+				    		<div ng-messages="form.serial.$error" style="color: #e74c3c;">
 		                        <div ng-message="required">Serial number is required</div>
 		                    </div>
 				    	</div>	
