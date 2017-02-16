@@ -10,7 +10,7 @@ module.directive('checkForDuplicate', function($q, $http) {
             	var deferred = $q.defer();
                 $http.get(attrs['checkForDuplicateUrl'] + viewValue)
     			.success(function(response){
-    				if(typeof response === 'object') {
+    				if(typeof response === 'object' && response.content.length > 0) {
     					deferred.reject();
     				}
     				deferred.resolve();

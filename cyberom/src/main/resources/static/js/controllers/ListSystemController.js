@@ -38,4 +38,9 @@ module.controller('ListSystemController', function($scope,
 		
 	};
 	
+	$scope.applySystemFilterByPageNumber = function(pageNumber) {
+		$scope.systemSearchFilter.pageNumber = pageNumber;
+		getSystems();
+	};
+	
 });

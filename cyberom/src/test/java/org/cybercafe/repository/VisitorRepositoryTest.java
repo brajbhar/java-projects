@@ -5,10 +5,8 @@ package org.cybercafe.repository;
 
 
 
-import java.util.List;
-
 import org.cybercafe.AbstractRepositoryTest;
-import org.cybercafe.model.Cybercafe;
+import org.cybercafe.domain.VisitorSearchFilter;
 import org.cybercafe.model.IDCardType;
 import org.cybercafe.model.Visitor;
 import org.cybercafe.utils.CybercafeTestDataUtility;
@@ -51,10 +49,10 @@ public class VisitorRepositoryTest extends AbstractRepositoryTest {
 	public void testFindAllWithPaging() {
 		int pageNumber = 0;
 		int pageSize = 5;
-		Visitor visitor = new Visitor();
-		visitor.setMobile("9819034283");
-		visitor.setCybercafe(cybercafeRepository.findOne(1L));
-		VisitorSpecification specification  = new VisitorSpecification(visitor);
+		VisitorSearchFilter filter = new VisitorSearchFilter();
+		filter.setMobile("9819034283");
+		filter.setCybercafe(cybercafeRepository.findOne(1L));
+		VisitorSpecification specification  = new VisitorSpecification(filter);
 		
 		Page<Visitor> visitors = visitorRepository.findAll(specification, new PageRequest(pageNumber, pageSize));
 		Assert.assertNotNull(visitors);
@@ -63,8 +61,8 @@ public class VisitorRepositoryTest extends AbstractRepositoryTest {
 		Assert.assertEquals(visitors.getNumberOfElements(), pageSize);
 		
 		for(Visitor visitorObj : visitors.getContent()) {
-			Assert.assertEquals(visitorObj.getMobile(), visitor.getMobile());
-			Assert.assertEquals(visitorObj.getCybercafe(), visitor.getCybercafe());
+			Assert.assertEquals(visitorObj.getMobile(), filter.getMobile());
+			Assert.assertEquals(visitorObj.getCybercafe(), filter.getCybercafe());
 		}
 	}
 	

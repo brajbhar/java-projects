@@ -12,13 +12,14 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					    <label for="name">System Name <span class="required-mark">*</span></label>
-					    <input type="text" class="form-control" 
+					    <input type="text" class="form-control" autocomplete="off"
 					    	id="name" ng-model="system.name" 
 					    	placeholder="Enter system name" name="name" required
-					    	>
+					    	check-for-duplicate data-check-for-duplicate-url="rest/systems?isExactMatchRequired=true&name=">
 					    <div ng-if="form.name.$dirty" class="help-block">
 				    		<div ng-messages="form.name.$error" style="color: #e74c3c;">
 		                        <div ng-message="required">System name is required</div>
+		                        <div ng-message="duplicate">System name already exists</div>
 		                    </div>
 				    	</div>	
 				  	</div>
@@ -26,13 +27,14 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					    <label for="name">Serial Number <span class="required-mark">*</span></label>
-					    <input type="text" class="form-control" 
+					    <input type="text" class="form-control" autocomplete="off"
 					    	id="serial" ng-model="system.serial" 
 					    	placeholder="Enter serial number" name="serial" required
-					    	>
+					    	check-for-duplicate data-check-for-duplicate-url="rest/systems?isExactMatchRequired=true&serial=">
 					    <div ng-if="form.serial.$dirty" class="help-block">
 				    		<div ng-messages="form.serial.$error" style="color: #e74c3c;">
 		                        <div ng-message="required">Serial number is required</div>
+		                        <div ng-message="duplicate">Serial number already exists</div>
 		                    </div>
 				    	</div>	
 				  	</div>
@@ -40,7 +42,7 @@
 		</div>
 		<div class="row">
 		<div class="col-md-12">
-		<a href="#" class="btn btn-primary" ng-click="saveSystem()" ng-disabled='form.$invalid'>Save System</a>
+		<a href="#" class="btn btn-primary" ng-click="hasError() || saveSystem()" ng-disabled='hasError()'>Save System</a>
 		<a href="#" class="btn btn-default">Reset</a>
 		</div>
 	

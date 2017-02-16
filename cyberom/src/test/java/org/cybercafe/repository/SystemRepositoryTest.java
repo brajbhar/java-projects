@@ -4,6 +4,7 @@
 package org.cybercafe.repository;
 
 import org.cybercafe.AbstractRepositoryTest;
+import org.cybercafe.domain.SystemSearchFilter;
 import org.cybercafe.model.System;
 import org.cybercafe.utils.CybercafeTestDataUtility;
 import org.junit.Assert;
@@ -46,8 +47,8 @@ public class SystemRepositoryTest extends AbstractRepositoryTest {
 		int pageNumber = 0;
 		int pageSize = 5;
 		
-		System computer = new System();
-		SystemSpecification specification = new SystemSpecification(computer);
+		SystemSearchFilter filter = new SystemSearchFilter();
+		SystemSpecification specification = new SystemSpecification(filter);
 		
 		Page<System> computers = computerRepository.findAll(specification, new PageRequest(pageNumber, pageSize));
 		Assert.assertNotNull(computers);

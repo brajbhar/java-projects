@@ -36,4 +36,19 @@ public class SystemServiceImpl implements SystemService {
 		return computers;
 	}
 
+	@Override
+	public System getSystem(Long systemId) {
+		return systemRepository.findOne(systemId);
+	}
+
+	@Override
+	public System updateSystem(System system) {
+		return systemRepository.save(system);
+	}
+
+	@Override
+	public Page<System> getSystemsByName() {
+		return null;
+	}
+
 }

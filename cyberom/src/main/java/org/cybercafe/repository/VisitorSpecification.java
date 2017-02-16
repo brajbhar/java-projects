@@ -8,11 +8,11 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
+import org.cybercafe.domain.VisitorSearchFilter;
 import org.cybercafe.model.Visitor;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -22,11 +22,12 @@ import org.springframework.data.jpa.domain.Specification;
  */
 public class VisitorSpecification implements Specification<Visitor> {
 	
-	private final Visitor visitor;
+	//private final Visitor visitor;
+	private final VisitorSearchFilter filter;
 	
 	
-	public VisitorSpecification(Visitor visitor) {
-		this.visitor = visitor;
+	public VisitorSpecification(VisitorSearchFilter filter) {
+		this.filter = filter;
 	}
 
 	@Override
@@ -34,17 +35,17 @@ public class VisitorSpecification implements Specification<Visitor> {
 			CriteriaBuilder criteriaBuilder) {
 		List<Predicate> predicates = new ArrayList<>();
 		//http://stackoverflow.com/questions/4014390/jpa-criteria-api-like-equal-problem
-		if(StringUtils.isNotBlank(visitor.getFirstName())) {
-			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("firstName")), visitor.getFirstName().toLowerCase() + "%"));
+		if(StringUtils.isNotBlank(filter.getFirstName())) {
+			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("firstName")), filter.getFirstName().toLowerCase() + "%"));
 		}
-		if(StringUtils.isNotBlank(visitor.getLastName())) {
-			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("lastName")), visitor.getLastName().toLowerCase() + "%"));
+		if(StringUtils.isNotBlank(filter.getLastName())) {
+			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("lastName")), filter.getLastName().toLowerCase() + "%"));
 		}
-		if(StringUtils.isNotBlank(visitor.getMobile())) {
-			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("mobile")), visitor.getMobile() + "%"));
+		if(StringUtils.isNotBlank(filter.getMobile())) {
+			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("mobile")), filter.getMobile() + "%"));
 		}
-		if(visitor.getCybercafe()!= null && visitor.getCybercafe().getId() != null) {
-			predicates.add(criteriaBuilder.equal(root.<String>get("cybercafe"), visitor.getCybercafe()));
+		if(filter.getCybercafe()!= null && filter.getCybercafe().getId() != null) {
+			predicates.add(criteriaBuilder.equal(root.<String>get("cybercafe"), filter.getCybercafe()));
 		}
 		return andTogether(predicates, criteriaBuilder);
 	}

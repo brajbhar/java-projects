@@ -13,6 +13,7 @@ import org.cybercafe.service.SystemService;
 import org.cybercafe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,16 +40,23 @@ public class SystemController {
 	
 	@RequestMapping(value = REST_COMPUTERS_URL, method = RequestMethod.GET)
 	public Page<System> getComputersByPaging(Principal principal,
-			@RequestParam("name") String systemName,
-			@RequestParam("serial") String serial,
-			@RequestParam("pageNumber") Integer pageNumber,
-			@RequestParam("pageSize") Integer pageSize) {
+			@RequestParam(value = "name", required = false) String systemName,
+			@RequestParam(value = "serial", required = false) String serial,
+			@RequestParam(value = "isExactMatchRequired", required = false, defaultValue = "false") boolean isExactMatchRequired,
+			@RequestParam(value = "pageNumber", required = true, defaultValue = "1") Integer pageNumber,
+			@RequestParam(value = "pageSize", required = true, defaultValue= "5") Integer pageSize) {
 		SystemSearchFilter filter = new SystemSearchFilter();
 		filter.setName(systemName);
 		filter.setSerial(serial);
 		filter.setPageNumber(pageNumber);
 		filter.setPageSize(pageSize);
+		filter.setExactMatchRequired(isExactMatchRequired);
 		return systemService.getSystems(filter);
+	}
+	
+	@RequestMapping(value = REST_COMPUTERS_URL + "/{systemId}", method = RequestMethod.GET)
+	public System getSystem(@PathVariable("systemId") Long systemId) {
+		return systemService.getSystem(systemId); 	
 	}
 	
 	@RequestMapping(value = REST_COMPUTERS_URL, method= RequestMethod.POST)
@@ -58,5 +66,13 @@ public class SystemController {
 		system.setUpdatedOn(new Date());
 		return systemService.addSystem(system);
 	}
-
+	
+	@RequestMapping(value = REST_COMPUTERS_URL, method = RequestMethod.PUT)
+	public System editSystem(Principal principle, @RequestBody System system){
+		system.setUpdatedBy(userService.getUserByEmail(principle.getName()));
+		system.setUpdatedOn(new Date());
+		return systemService.updateSystem(system);
+	}
+	
+	
 }

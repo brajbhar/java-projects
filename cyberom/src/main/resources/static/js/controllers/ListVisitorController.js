@@ -12,7 +12,7 @@ module.controller('ListVisitorController', function($scope,
 	$scope.visitorSearchFilter = {};
 	
     $scope.visitorSearchFilter.pageNumber = 1;
-	$scope.visitorSearchFilter.pageSize = 5;
+	$scope.visitorSearchFilter.pageSize = 10;
     
     getVisitors();
 	

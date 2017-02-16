@@ -9,6 +9,15 @@ module.controller('AddSystemController', function($scope, $location, SystemServi
 	.then(function(cybercafe){
 		$scope.system.cybercafe = cybercafe;
 	});
+	
+	$scope.hasError = function() {
+		var form = this.form;
+		if((form.name.$dirty && form.name.$invalid) 
+				|| (form.name.$dirty && form.serial.$invalid)) {
+			return true;
+		}
+		return false;
+	};
 
 	
 	$scope.saveSystem = function() {

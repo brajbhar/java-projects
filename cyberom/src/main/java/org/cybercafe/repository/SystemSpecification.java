@@ -7,31 +7,45 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import org.apache.commons.lang3.StringUtils;
+import org.cybercafe.domain.SystemSearchFilter;
 import org.cybercafe.model.System;
 import org.springframework.data.jpa.domain.Specification;
 
 public class SystemSpecification implements Specification<System> {
 	
-	private final System computer;
+	//private final System computer;
 	
-	public SystemSpecification(System computer) {
-		this.computer = computer;
+	private final SystemSearchFilter filter;
+	
+	public SystemSpecification(SystemSearchFilter filter) {
+		//this.computer = filter;
+		this.filter = filter;
 	}
 
 	@Override
 	public Predicate toPredicate(Root<System> root, CriteriaQuery<?> criteriaQuery, 
 			CriteriaBuilder criteriaBuilder) {
 		List<Predicate> predicates = new ArrayList<>();
-		if(StringUtils.isNotBlank(computer.getName())) {
+		
+		if(StringUtils.isNotBlank(filter.getName())) {
+			String systemName = filter.getName().toLowerCase();
+			if(!filter.isExactMatchRequired()) {
+				systemName = systemName + "%";
+			}
 			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("name")), 
-					computer.getName().toLowerCase() + "%"));
+					systemName));
 		}
 		
-		if(StringUtils.isNotBlank(computer.getSerial())) {
+		if(StringUtils.isNotBlank(filter.getSerial())) {
+			String serial = filter.getSerial().toLowerCase();
+			if(!filter.isExactMatchRequired()) {
+				serial = serial + "%";
+			}
 			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("serial")),
-					computer.getSerial().toLowerCase() + "%"));
+					serial));
 		}
 		return andTogether(predicates, criteriaBuilder);
 	}
