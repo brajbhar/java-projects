@@ -4,6 +4,7 @@ import org.cybercafe.model.System;
 
 public class SystemSearchFilter extends System {
 	
+	private boolean getOnlyAvailableSystems;
 	
 	private int pageNumber;
 	
@@ -33,6 +34,14 @@ public class SystemSearchFilter extends System {
 
 	public void setExactMatchRequired(boolean isExactMatchRequired) {
 		this.isExactMatchRequired = isExactMatchRequired;
+	}
+
+	public boolean isGetOnlyAvailableSystems() {
+		return getOnlyAvailableSystems;
+	}
+
+	public void setGetOnlyAvailableSystems(boolean getOnlyAvailableSystems) {
+		this.getOnlyAvailableSystems = getOnlyAvailableSystems;
 	}
 	
 	

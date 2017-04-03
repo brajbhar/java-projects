@@ -1,15 +1,20 @@
 package org.cybercafe.utils;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import org.cybercafe.model.Address;
 import org.cybercafe.model.City;
-import org.cybercafe.model.System;
 import org.cybercafe.model.Cybercafe;
 import org.cybercafe.model.IDCardType;
+import org.cybercafe.model.Session;
+import org.cybercafe.model.SessionStatus;
 import org.cybercafe.model.State;
 import org.cybercafe.model.Status;
+import org.cybercafe.model.System;
+import org.cybercafe.model.SystemUsage;
 import org.cybercafe.model.User;
 import org.cybercafe.model.Visitor;
 import org.junit.Assert;
@@ -162,6 +167,29 @@ public class CybercafeTestDataUtility {
 		computer.setUpdatedBy(user);
 		computer.setUpdatedOn(new Date());
 		return computer;
+	}
+	
+	public static Session getSession(Cybercafe cybercafe, Visitor visitor, 
+			User user, System system, SessionStatus sessionStatus 
+			 ) {
+		Session session = new Session();
+		session.setVisitor(visitor);
+		//session.setCreatedBy(user);
+		session.setCreatedOn(new Date());
+		session.setCybercafe(cybercafe);
+		session.setUpdatedBy(user);
+		session.setSessionStatus(sessionStatus);
+		session.setUpdatedOn(new Date());
+		session.setStartTime(new Date());
+		if(system != null) {
+			Set<SystemUsage> systemUsages = new HashSet<>();
+			SystemUsage systemUsage = new SystemUsage();
+			systemUsage.setSystem(system);
+			systemUsage.setStartTime(session.getStartTime());
+			systemUsages.add(systemUsage);
+			session.setSystemUsages(systemUsages);
+		}
+		return session;
 	}
 
 }

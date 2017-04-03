@@ -19,6 +19,9 @@ public class System extends AbstractEntity {
 	@JoinColumn(name = "status_id")
 	private Status status;
 	
+	@Column(name = "is_occupied")
+	private boolean occupied;
+	
 	@Column(name = "serial")
 	private String serial;
 	
@@ -79,6 +82,14 @@ public class System extends AbstractEntity {
 
 	public void setUpdatedOn(Date updatedOn) {
 		this.updatedOn = updatedOn;
+	}
+
+	public boolean isOccupied() {
+		return occupied;
+	}
+
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
 	}
 	
 	

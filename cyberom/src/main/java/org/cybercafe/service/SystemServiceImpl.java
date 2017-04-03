@@ -3,6 +3,8 @@
  */
 package org.cybercafe.service;
 
+import java.util.List;
+
 import org.cybercafe.domain.SystemSearchFilter;
 import org.cybercafe.model.System;
 import org.cybercafe.repository.StatusRepository;

@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,8 +21,7 @@ import javax.persistence.Table;
 @Table(name = "tbl_system_usage")
 public class SystemUsage extends AbstractEntity {
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "system_id")
+	@ManyToOne(fetch = FetchType.EAGER)
 	private System system;
 	
 	@Column(name = "start_time")
@@ -29,7 +29,6 @@ public class SystemUsage extends AbstractEntity {
 	
 	@Column(name = "end_time")
 	private Date endTime;
-	
 
 	public System getSystem() {
 		return system;

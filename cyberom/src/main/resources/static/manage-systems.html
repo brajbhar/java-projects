@@ -54,6 +54,7 @@
 					<th>Sr No</th>
 					<th>Name</th>
 					<th>Serial No.</th>
+					<th>Available</th>
 					<th></th>
 				</tr>
 				</thead>
@@ -61,6 +62,10 @@
 					<td>{{($index+1) + (systemSearchFilter.pageNumber-1) * systemSearchFilter.pageSize}}</td>
 					<td>{{system.name}}</td>
 					<td>{{system.serial}}</td>
+					<td>
+						<span ng-hide="system.occupied" class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
+						<span ng-show="system.occupied" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</td>
 					<td>
 						<a href="#/editSystem" ui-sref="editSystem({systemId: system.id})" class="btn btn-primary">Edit</a> &nbsp;
 				</tr>

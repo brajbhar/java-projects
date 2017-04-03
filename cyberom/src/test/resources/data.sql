@@ -1,4 +1,6 @@
-
+DROP TABLE IF EXISTS tbl_session_system_usage;
+DROP TABLE IF EXISTS tbl_system_usage;
+DROP TABLE IF EXISTS tbl_session;
 DROP TABLE IF EXISTS tbl_system;
 DROP TABLE IF EXISTS tbl_visitor;
 DROP TABLE IF EXISTS tbl_cybercafe;
@@ -8,6 +10,8 @@ DROP TABLE IF EXISTS tbl_state;
 DROP TABLE IF EXISTS tbl_user;
 DROP TABLE IF EXISTS tbl_id_card_type;
 DROP TABLE IF EXISTS tbl_status;
+DROP TABLE IF EXISTS tbl_session_status;
+
 
 
 CREATE TABLE tbl_status (
@@ -15,6 +19,13 @@ CREATE TABLE tbl_status (
 	name varchar(45) NOT NULL,
 	PRIMARY KEY (id)
 );
+
+CREATE TABLE tbl_session_status (
+	id int(10) unsigned NOT NULL AUTO_INCREMENT,
+	name varchar(45) NOT NULL,
+	PRIMARY KEY (id)
+);
+
 
 CREATE TABLE  tbl_state (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -105,6 +116,7 @@ CREATE TABLE tbl_system (
   name varchar(45) DEFAULT NULL,
   serial varchar(100) DEFAULT NULL,
   status_id int(10) unsigned NOT NULL,
+  is_occupied boolean,
   cybercafe_id int(10) unsigned NOT NULL,
   updated_on datetime NOT NULL,
   updated_by int(10) unsigned NOT NULL,
@@ -117,12 +129,60 @@ CREATE TABLE tbl_system (
   CONSTRAINT FK_tbl_system_3 FOREIGN KEY (status_id) REFERENCES tbl_status (id)
 );
 
+CREATE TABLE tbl_session (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  start_time datetime NOT NULL,
+  end_time datetime,
+  visitor_id int(10) unsigned NOT NULL,
+  updated_on datetime NOT NULL,
+  updated_by int(10) unsigned NOT NULL,
+  created_on datetime NOT NULL,
+  cybercafe_id int(10) unsigned NOT NULL,
+  session_status_id int(10) unsigned NOT NULL,
+  PRIMARY KEY (id),
+  KEY FK_tbl_session_1 (visitor_id),
+  KEY FK_tbl_session_2 (cybercafe_id),
+  KEY FK_tbl_session_3 (session_status_id),
+  CONSTRAINT FK_tbl_session_1 FOREIGN KEY (visitor_id) REFERENCES tbl_visitor (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_tbl_session_2 FOREIGN KEY (cybercafe_id) REFERENCES tbl_cybercafe (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_tbl_session_3 FOREIGN KEY (session_status_id) REFERENCES tbl_session_status (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE tbl_system_usage (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  system_id int(10) unsigned NOT NULL,
+  start_time datetime NOT NULL,
+  end_time datetime,
+  PRIMARY KEY (id),
+  KEY FK_tbl_system_usage_1 (system_id),
+  CONSTRAINT FK_tbl_system_usage_1 FOREIGN KEY (system_id) REFERENCES tbl_system (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE tbl_session_system_usage (
+  session_id int(10) unsigned NOT NULL,
+  system_usage_id int(10) unsigned NOT NULL,
+  KEY FK_tbl_session_system_usage_1 (session_id),
+  KEY FK_tbl_session_system_usage_2 (system_usage_id),
+  CONSTRAINT FK_tbl_session_system_usage_2 FOREIGN KEY (system_usage_id) REFERENCES tbl_system_usage (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_tbl_session_system_usage_1 FOREIGN KEY (session_id) REFERENCES tbl_session (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
 insert into tbl_status(id, name)
 values(1, 'Active');
 
-
 insert into tbl_status(id, name)
 values(2, 'Inactive');
+
+insert into tbl_session_status(id, name)
+values(1, 'New');
+
+insert into tbl_session_status(id, name)
+values(2, 'In Progress');
+
+insert into tbl_session_status(id, name)
+values(3, 'Completed');
 
 insert into tbl_state(id, name)
 values(1, 'Punjab');
@@ -204,14 +264,14 @@ INSERT INTO tbl_visitor (id,first_name,last_name,age,sex,address_id,mobile,cyber
  (12,'Naresh','Rajbhar',20,'Male',1,'9819034283',1,'342730',3,NULL,'2016-06-23 22:16:45');
 
  
- INSERT INTO tbl_system (id, name, serial, status_id, cybercafe_id, updated_on, updated_by) VALUES
- (1, 'System1', 'ABC', 1, 1, '2016-06-23 22:16:45', 1),
- (2, 'System2', 'EFG', 1, 1, '2016-06-23 22:16:45', 1),
- (3, 'System3', 'HIJ', 1, 1, '2016-06-23 22:16:45', 1),
- (4, 'System4', 'KLM', 1, 1, '2016-06-23 22:16:45', 1),
- (5, 'System5', 'NOP', 1, 1, '2016-06-23 22:16:45', 1),
- (6, 'System6', 'QRS', 1, 1, '2016-06-23 22:16:45', 1),
- (7, 'System7', 'TUV', 1, 1, '2016-06-23 22:16:45', 1),
- (8, 'System8', 'WXY', 1, 1, '2016-06-23 22:16:45', 1),
- (9, 'System9', 'ZAB', 1, 1, '2016-06-23 22:16:45', 1),
- (10, 'System10', 'CDF', 1, 1, '2016-06-23 22:16:45', 1);
+ INSERT INTO tbl_system (id, name, serial, status_id, cybercafe_id, updated_on, updated_by, is_occupied) VALUES
+ (1, 'System1', 'ABC', 1, 1, '2016-06-23 22:16:45', 1, false),
+ (2, 'System2', 'EFG', 1, 1, '2016-06-23 22:16:45', 1, false),
+ (3, 'System3', 'HIJ', 1, 1, '2016-06-23 22:16:45', 1, false),
+ (4, 'System4', 'KLM', 1, 1, '2016-06-23 22:16:45', 1, false),
+ (5, 'System5', 'NOP', 1, 1, '2016-06-23 22:16:45', 1, false),
+ (6, 'System6', 'QRS', 1, 1, '2016-06-23 22:16:45', 1, false),
+ (7, 'System7', 'TUV', 1, 1, '2016-06-23 22:16:45', 1, false),
+ (8, 'System8', 'WXY', 1, 1, '2016-06-23 22:16:45', 1, false),
+ (9, 'System9', 'ZAB', 1, 1, '2016-06-23 22:16:45', 1, false),
+ (10, 'System10', 'CDF', 1, 1, '2016-06-23 22:16:45', 1, false);
