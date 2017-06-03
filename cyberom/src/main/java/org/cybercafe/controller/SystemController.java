@@ -7,12 +7,15 @@ import java.security.Principal;
 import java.util.Date;
 
 import org.cybercafe.domain.SystemSearchFilter;
+import org.cybercafe.model.Cybercafe;
 import org.cybercafe.model.System;
+import org.cybercafe.service.CybercafeService;
 import org.cybercafe.service.StatusService;
 import org.cybercafe.service.SystemService;
 import org.cybercafe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +39,9 @@ public class SystemController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private CybercafeService cybercafeService;
+	
 	public static final String REST_COMPUTERS_URL = "rest/systems";
 	
 	@RequestMapping(value = REST_COMPUTERS_URL, method = RequestMethod.GET)
@@ -43,15 +49,22 @@ public class SystemController {
 			@RequestParam(value = "name", required = false) String systemName,
 			@RequestParam(value = "serial", required = false) String serial,
 			@RequestParam(value = "isExactMatchRequired", required = false, defaultValue = "false") boolean isExactMatchRequired,
+			@RequestParam(value = "isPagingRequired", required = false, defaultValue = "false") boolean isPagingRequired,
 			@RequestParam(value = "pageNumber", required = true, defaultValue = "1") Integer pageNumber,
 			@RequestParam(value = "pageSize", required = true, defaultValue= "5") Integer pageSize) {
+		String userName = principal.getName();
+		Cybercafe cybercafe = cybercafeService.getCybercafe(userName);
 		SystemSearchFilter filter = new SystemSearchFilter();
 		filter.setName(systemName);
 		filter.setSerial(serial);
 		filter.setPageNumber(pageNumber);
 		filter.setPageSize(pageSize);
 		filter.setExactMatchRequired(isExactMatchRequired);
-		return systemService.getSystems(filter);
+		filter.setCybercafe(cybercafe);
+		if(isPagingRequired) {
+			return systemService.getSystemsWithPagination(filter);
+		}
+		return new PageImpl<> (systemService.getSystemsWithoutPagination(filter));
 	}
 	
 	@RequestMapping(value = REST_COMPUTERS_URL + "/{systemId}", method = RequestMethod.GET)

@@ -1,0 +1,68 @@
+<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-danger" role="alert" ng-show="showSomethingWentWrongAlert" style="margin-bottom: 0px;">
+				<b>{{errorMessage}}</b>
+			</div>
+		</div>
+	</div>
+	<form ng-submit="saveSession(form)" name="form" novalidate>
+	<div class="row">
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					    <label for="name">Visitor Name <span class="required-mark">*</span></label>
+					    <input type="text" class="form-control" autocomplete="off"
+					    	id="name" value="{{session.visitor.firstName}}&nbsp;{{session.visitor.lastName}}" 
+					    	placeholder="Enter system name" name="name" readonly
+					    	>
+					    
+				  	</div>
+				  	
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					    <label for="name">Available Systems <span class="required-mark">*</span></label>
+					    <select class="form-control" id=""
+				    	ng-model="session.system"
+				    	name="selectedSystem" 
+				    	 ng-options="system.name for system in availableSystems" required>
+				    	 <option value="">Select system</option>
+					 
+						</select>
+						<div ng-if="form.selectedSystem.$dirty" class="help-block">
+			    		<div ng-messages="form.selectedSystem.$error" style="color: #e74c3c;">
+	                        <div ng-message="required">Please select a system</div>
+	                    </div>
+			    	</div>
+				  	</div>
+			</div>
+		</div>
+		<div class="row">
+		<div class="col-md-4">
+		
+			<div class="form-group">
+				<label>Duration in min<span class="required-mark">*</span></label>
+				<select class="form-control" id=""
+				    	ng-model="session.bookedForDuration"
+				    	name="duration" 
+				    	 ng-options="duration as duration for duration in bookingDurations" required>
+				    	 <option value="">Select Duration</option>
+					 
+						</select>
+						<div ng-if="form.duration.$dirty" class="help-block">
+			    		<div ng-messages="form.duration.$error" style="color: #e74c3c;">
+	                        <div ng-message="required">Please select booking duration</div>
+	                    </div>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-md-12">
+		<a href="#" class="btn btn-primary" ng-click="hasError() || startSession()" ng-disabled='form.$invalid'>Start Session</a>
+		<a href="#" class="btn btn-default">Reset</a>
+		</div>
+	
+	</div>
+	</form>

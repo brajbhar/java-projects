@@ -158,7 +158,7 @@ public class CybercafeServiceImpl implements CybercafeService {
 
 	@Override
 	public Cybercafe getCybercafe(String username) {
-		User user = userService.getUserByUserName(username);
+		User user = userService.getUserByEmail(username);
 		return cybercafeRepository.findOneByUser(user);
 	}
 

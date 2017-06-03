@@ -17,7 +17,9 @@ public interface SystemService {
 	
 	System addSystem(System system);
 	
-	Page<System> getSystems(SystemSearchFilter filter);
+	Page<System> getSystemsWithPagination(SystemSearchFilter filter);
+	
+	List<System> getSystemsWithoutPagination(SystemSearchFilter filter);
 	
 	Page<System> getSystemsByName();
 	

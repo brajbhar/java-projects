@@ -12,6 +12,7 @@ module.controller('ListSystemController', function($scope,
 	
 	$scope.systemSearchFilter.pageNumber = 1;
 	$scope.systemSearchFilter.pageSize = 5;
+	$scope.isPagingRequired = true;
 	
 	getSystems();
 	
@@ -31,7 +32,8 @@ module.controller('ListSystemController', function($scope,
 				"name" : $scope.systemSearchFilter.name ? $scope.systemSearchFilter.name : '',
 				"serial" : $scope.systemSearchFilter.serial ? $scope.systemSearchFilter.serial : '',
 				"pageNumber" : $scope.systemSearchFilter.pageNumber ? $scope.systemSearchFilter.pageNumber : '',
-				"pageSize" : $scope.systemSearchFilter.pageSize ? $scope.systemSearchFilter.pageSize : ''
+				"pageSize" : $scope.systemSearchFilter.pageSize ? $scope.systemSearchFilter.pageSize : '',
+				"isPagingRequired":$scope.isPagingRequired
 		};
 		
 		return searchFilter;

@@ -47,6 +47,9 @@ public class SystemSpecification implements Specification<System> {
 			predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.<String>get("serial")),
 					serial));
 		}
+		if(filter.getCybercafe()!= null && filter.getCybercafe().getId() != null) {
+			predicates.add(criteriaBuilder.equal(root.<String>get("cybercafe"), filter.getCybercafe()));
+		}
 		return andTogether(predicates, criteriaBuilder);
 	}
 	

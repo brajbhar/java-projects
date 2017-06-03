@@ -31,7 +31,7 @@ public class SystemServiceImpl implements SystemService {
 	}
 
 	@Override
-	public Page<System> getSystems(SystemSearchFilter filter) {
+	public Page<System> getSystemsWithPagination(SystemSearchFilter filter) {
 		SystemSpecification specification = new SystemSpecification(filter);
 		PageRequest pageRequest = new PageRequest(filter.getPageNumber(), filter.getPageSize());
 		Page<System> computers = systemRepository.findAll(specification, pageRequest);
@@ -51,6 +51,12 @@ public class SystemServiceImpl implements SystemService {
 	@Override
 	public Page<System> getSystemsByName() {
 		return null;
+	}
+
+	@Override
+	public List<System> getSystemsWithoutPagination(SystemSearchFilter filter) {
+		SystemSpecification specification = new SystemSpecification(filter);
+		return systemRepository.findAll(specification);
 	}
 
 }

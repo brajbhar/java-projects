@@ -44,7 +44,7 @@ public class SessionServiceImpl implements SessionService {
 		filter.setPageNumber(1);
 		filter.setPageSize(numberOfSystems);
 		filter.setGetOnlyAvailableSystems(true);
-		Page<System> availableSystems = systemService.getSystems(filter);
+		Page<System> availableSystems = systemService.getSystemsWithPagination(filter);
 		if(CollectionUtils.isEmpty(availableSystems.getContent())) {
 			throw new AllSystemsOccupiedException("All systems are occupied");
 		}
