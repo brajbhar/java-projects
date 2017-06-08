@@ -44,7 +44,7 @@ module.config(function($urlRouterProvider, $stateProvider, $httpProvider){
 		url: '/createSession/:visitorId',
 		templateUrl: 'create-session.html'
 	})
-	.state('listSession',{
+	.state('listSessions',{
 		url: '/listSessions',
 		templateUrl: 'manage-sessions.html'
 	});
