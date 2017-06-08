@@ -14,11 +14,11 @@ module.config(function($urlRouterProvider, $stateProvider, $httpProvider){
 	})
 	.state('addVisitor', {
 		url: '/addVisitor',
-		templateUrl: 'add-visitor.html',
+		templateUrl: 'templates/visitor/add-visitor.html',
 	})
 	.state('editVisitor',{
 		url: '/editVisitor/:visitorId',
-		templateUrl: 'edit-visitor.html',
+		templateUrl: 'templates/visitor/edit-visitor.html',
 	})
 	.state('login', {
 		url: '/login',
@@ -26,27 +26,27 @@ module.config(function($urlRouterProvider, $stateProvider, $httpProvider){
 	})
 	.state('listVisitors', {
 		url: '/listVisitors',
-		templateUrl: 'manage-visitors.html',
+		templateUrl: 'templates/visitor/manage-visitors.html',
 	})
 	.state('listSystems', {
 		url: '/listSystems',
-		templateUrl: 'manage-systems.html'
+		templateUrl: 'templates/system/manage-systems.html'
 	})
 	.state('addSystem', {
 		url:'/addSystem',
-		templateUrl:'add-system.html'
+		templateUrl:'templates/system/add-system.html'
 	})
 	.state('editSystem',{
 		url: '/editSystem/:systemId',
-		templateUrl: 'edit-system.html',
+		templateUrl: 'templates/system/edit-system.html',
 	})
 	.state('createSession',{
 		url: '/createSession/:visitorId',
-		templateUrl: 'create-session.html'
+		templateUrl: 'templates/session/create-session.html'
 	})
 	.state('listSessions',{
 		url: '/listSessions',
-		templateUrl: 'manage-sessions.html'
+		templateUrl: 'templates/session/manage-sessions.html'
 	});
 	
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
