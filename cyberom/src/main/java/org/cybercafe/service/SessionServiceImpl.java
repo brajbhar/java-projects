@@ -3,13 +3,17 @@
  */
 package org.cybercafe.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.cybercafe.domain.SystemSearchFilter;
 import org.cybercafe.exception.AllSystemsOccupiedException;
+import org.cybercafe.model.Cybercafe;
 import org.cybercafe.model.Session;
+import org.cybercafe.model.SessionStatus;
 import org.cybercafe.model.System;
+import org.cybercafe.model.User;
 import org.cybercafe.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,30 +30,25 @@ public class SessionServiceImpl implements SessionService {
 	private SessionRepository sessionRepository;
 	
 	@Autowired
-	private SystemService systemService;
-
+	private SessionStatusService sessionStatusService;
+	
 	@Override
-	public Session createNewSesion(Session session) {
+	public Session createNewSesion(Session session, Cybercafe cybercafe, User user) {
+		Date currentDate = new Date();
+		session.setCreatedOn(currentDate);
+		session.setUpdatedOn(currentDate);
+		session.setCybercafe(cybercafe);
+		session.setStartTime(currentDate);
+		session.setSessionStatus(sessionStatusService.getNewStatus());
+		session.setUpdatedBy(user);
 		return sessionRepository.save(session);
 	}
 	
 	@Override
 	public Session assignSystem(Session session) throws AllSystemsOccupiedException {
-		
 		return null;
 	}
 
-	private List<System> getAvailableSystems(int numberOfSystems) throws AllSystemsOccupiedException {
-		SystemSearchFilter filter = new SystemSearchFilter();
-		filter.setPageNumber(1);
-		filter.setPageSize(numberOfSystems);
-		filter.setGetOnlyAvailableSystems(true);
-		Page<System> availableSystems = systemService.getSystemsWithPagination(filter);
-		if(CollectionUtils.isEmpty(availableSystems.getContent())) {
-			throw new AllSystemsOccupiedException("All systems are occupied");
-		}
-		return availableSystems.getContent();
-	}
 
 	@Override
 	public Session updateSession(Session session) {
@@ -57,8 +56,11 @@ public class SessionServiceImpl implements SessionService {
 	}
 
 	@Override
-	public Session startSession(long sessionId) {
-		return null;
+	public Session startSession(long sessionId, Date startTime, SessionStatus sessionStatus) {
+		Session session = sessionRepository.findOne(sessionId);
+		session.setStartTime(startTime);
+		session.setSessionStatus(sessionStatus);
+		return sessionRepository.save(session);
 	}
 
 	@Override

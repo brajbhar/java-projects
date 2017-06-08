@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Table(name = "tbl_session")
 public class Session extends AbstractEntity {
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Visitor visitor;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER )

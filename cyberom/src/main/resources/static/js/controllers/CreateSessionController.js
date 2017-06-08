@@ -44,6 +44,7 @@ module.controller('CreateSessionController', function($scope, $location, $stateP
 		
 	};
 	
+	
 	$scope.startSession = function(){
 		var startTime = new Date();
 		$scope.session.systemUsages = [
