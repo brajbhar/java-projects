@@ -7,7 +7,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import org.apache.commons.lang3.StringUtils;
 import org.cybercafe.domain.SystemSearchFilter;
@@ -16,12 +15,9 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class SystemSpecification implements Specification<System> {
 	
-	//private final System computer;
-	
 	private final SystemSearchFilter filter;
 	
 	public SystemSpecification(SystemSearchFilter filter) {
-		//this.computer = filter;
 		this.filter = filter;
 	}
 

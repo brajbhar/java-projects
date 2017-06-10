@@ -4,19 +4,18 @@
 package org.cybercafe.service;
 
 import java.util.Date;
-import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.cybercafe.domain.SystemSearchFilter;
+import org.cybercafe.domain.SessionSearchFilter;
 import org.cybercafe.exception.AllSystemsOccupiedException;
 import org.cybercafe.model.Cybercafe;
 import org.cybercafe.model.Session;
 import org.cybercafe.model.SessionStatus;
-import org.cybercafe.model.System;
 import org.cybercafe.model.User;
 import org.cybercafe.repository.SessionRepository;
+import org.cybercafe.repository.SessionSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -74,8 +73,10 @@ public class SessionServiceImpl implements SessionService {
 	}
 
 	@Override
-	public Session getSessions() {
-		return null;
+	public Page<Session> getSessions(SessionSearchFilter filter) {
+		SessionSpecification specification = new SessionSpecification(filter);
+		PageRequest pageRequest = new PageRequest(filter.getPageNumber(), filter.getPageSize());
+		return sessionRepository.findAll(specification, pageRequest);
 	}
 
 

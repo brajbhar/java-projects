@@ -2,11 +2,13 @@ package org.cybercafe.service;
 
 import java.util.Date;
 
+import org.cybercafe.domain.SessionSearchFilter;
 import org.cybercafe.exception.AllSystemsOccupiedException;
 import org.cybercafe.model.Cybercafe;
 import org.cybercafe.model.Session;
 import org.cybercafe.model.SessionStatus;
 import org.cybercafe.model.User;
+import org.springframework.data.domain.Page;
 
 public interface SessionService {
 	
@@ -22,6 +24,6 @@ public interface SessionService {
 	
 	Session getSession(Long id);
 	
-	Session getSessions();
+	Page<Session> getSessions(SessionSearchFilter filter);
 
 }

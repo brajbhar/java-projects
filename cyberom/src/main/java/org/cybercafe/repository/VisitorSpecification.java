@@ -22,7 +22,6 @@ import org.springframework.data.jpa.domain.Specification;
  */
 public class VisitorSpecification implements Specification<Visitor> {
 	
-	//private final Visitor visitor;
 	private final VisitorSearchFilter filter;
 	
 	

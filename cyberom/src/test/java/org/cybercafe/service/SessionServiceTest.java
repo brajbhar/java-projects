@@ -64,6 +64,11 @@ public class SessionServiceTest extends AbstractTest {
 	}
 	
 	@Test
+	public void testGetSessions() {
+		
+	}
+	
+	@Test
 	public void testAssignSystem() {
 		
 	}
