@@ -45,7 +45,7 @@ public class SystemController {
 	public static final String REST_COMPUTERS_URL = "rest/systems";
 	
 	@RequestMapping(value = REST_COMPUTERS_URL, method = RequestMethod.GET)
-	public Page<System> getComputersByPaging(Principal principal,
+	public Page<System> getSystems(Principal principal,
 			@RequestParam(value = "name", required = false) String systemName,
 			@RequestParam(value = "serial", required = false) String serial,
 			@RequestParam(value = "isExactMatchRequired", required = false, defaultValue = "false") boolean isExactMatchRequired,

@@ -33,7 +33,7 @@ public class Session extends AbstractEntity {
     , inverseJoinColumns={@JoinColumn(name="system_usage_id", referencedColumnName="id")})
 	private Set<SystemUsage> systemUsages;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Cybercafe cybercafe;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)

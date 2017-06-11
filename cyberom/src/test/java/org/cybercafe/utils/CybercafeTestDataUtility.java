@@ -174,7 +174,6 @@ public class CybercafeTestDataUtility {
 			 ) {
 		Session session = new Session();
 		session.setVisitor(visitor);
-		//session.setCreatedBy(user);
 		session.setCreatedOn(new Date());
 		session.setCybercafe(cybercafe);
 		session.setUpdatedBy(user);
