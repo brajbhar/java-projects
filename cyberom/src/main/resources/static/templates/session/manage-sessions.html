@@ -1,15 +1,15 @@
 <div class="container-fluid" ng-controller="ListSessionController">
 	<div class="row">
 		<div class="col-md-10">
-			<h2>Manage Visitors</h2>
+			<h2>Manage Sessions</h2>
 		</div>
 		<div class="col-md-2">
-			<a href="#/addVisitor" class="btn btn-primary pull-right">Add Visitor</a>
+			<a href="#/addSession" class="btn btn-primary pull-right">Add Session</a>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Find Visitor</h3>
+			<h3>Find Session</h3>
 		</div>
 		
 	</div>
@@ -62,23 +62,23 @@
 				<tr>
 					<th>Sr No</th>
 					<th>Name</th>
-					<th>Age</th>
-					<th>Sex</th>
-					<th>Mobile</th>
-					<th>Address</th>
+					<th>Start Time</th>
+					<th>End Time</th>
+					<th>Remaining Time</th>
+					<th>Status</th>
 					<th></th>
 				</tr>
 				</thead>
-				<tr ng-repeat="visitor in visitors">
-					<td>{{($index+1) + (visitorSearchFilter.pageNumber-1) * visitorSearchFilter.pageSize}}</td>
-					<td>{{visitor.firstName}} {{visitor.lastName}}</td>
-					<td>{{visitor.age}}</td>
+				<tr ng-repeat="session in sessions">
+					<td>{{($index+1) + (sessionSearchFilter.pageNumber-1) * sessionSearchFilter.pageSize}}</td>
+					<td>{{session.visitor.firstName}} {{session.visitor.lastName}}</td>
+					<td>{{session.startTime | date}}</td>
 					<td>{{visitor.sex}}</td>
 					<td>{{visitor.mobile}}</td>
-					<td>{{visitor.address.addressLine1}}, {{visitor.address.addressLine2}}</td>
+					<td>{{session.sessionStatus.name}}</td>
 					<td>
-						<a href="#/createSession" ui-sref="createSession({visitorId: visitor.id})" class="btn btn-primary">Session</a> &nbsp;
 						<a href="#/editVisitor" ui-sref="editVisitor({visitorId: visitor.id})" class="btn btn-primary">Edit</a> &nbsp;
+					</td>
 				</tr>
 			</table>
 		</div>

@@ -49,7 +49,9 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Override
 	public Visitor getVisitor(Long visitorId) {
-		return visitorRepository.findOne(visitorId);
+		if(visitorId != null)
+			return visitorRepository.findOne(visitorId);
+		return null;
 	}
 
 	public VisitorRepository getVisitorRepository() {
