@@ -40,6 +40,9 @@ public class Session extends AbstractEntity {
 	@JoinColumn(name = "session_status_id")
 	private SessionStatus sessionStatus;
 	
+	@Column(name = "booking_duration")
+	private Integer bookingDuration;
+	
 	@Column(name = "start_time")
 	private Date startTime;
 	
@@ -132,5 +135,15 @@ public class Session extends AbstractEntity {
 	public void setSessionStatus(SessionStatus sessionStatus) {
 		this.sessionStatus = sessionStatus;
 	}
+
+	public Integer getBookingDuration() {
+		return bookingDuration;
+	}
+
+	public void setBookingDuration(Integer bookingDuration) {
+		this.bookingDuration = bookingDuration;
+	}
+	
+	
 
 }

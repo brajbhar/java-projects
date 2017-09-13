@@ -139,6 +139,7 @@ CREATE TABLE tbl_session (
   created_on datetime NOT NULL,
   cybercafe_id int(10) unsigned NOT NULL,
   session_status_id int(10) unsigned NOT NULL,
+  booking_duration int(10) DEFAULT NULL,
   PRIMARY KEY (id),
   KEY FK_tbl_session_1 (visitor_id),
   KEY FK_tbl_session_2 (cybercafe_id),

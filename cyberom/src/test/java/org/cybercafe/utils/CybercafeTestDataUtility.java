@@ -180,6 +180,7 @@ public class CybercafeTestDataUtility {
 		session.setSessionStatus(sessionStatus);
 		session.setUpdatedOn(new Date());
 		session.setStartTime(new Date());
+		session.setBookingDuration(30);
 		if(system != null) {
 			Set<SystemUsage> systemUsages = new HashSet<>();
 			SystemUsage systemUsage = new SystemUsage();
