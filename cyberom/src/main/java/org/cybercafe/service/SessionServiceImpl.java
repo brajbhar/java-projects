@@ -3,7 +3,10 @@
  */
 package org.cybercafe.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.cybercafe.domain.SessionSearchFilter;
 import org.cybercafe.exception.AllSystemsOccupiedException;
@@ -77,6 +80,29 @@ public class SessionServiceImpl implements SessionService {
 		SessionSpecification specification = new SessionSpecification(filter);
 		PageRequest pageRequest = new PageRequest(filter.getPageNumber(), filter.getPageSize());
 		return sessionRepository.findAll(specification, pageRequest);
+	}
+
+	@Override
+	public void completeSessions() {
+		List<Session> sessions = sessionRepository.findBySessionStatus(
+				sessionStatusService.getInProgressStatus());
+		List<Session> completedSessions = new ArrayList<>();
+		for(Session session : sessions) {
+			int bookingDuration = session.getBookingDuration();
+			Date startTime = session.getStartTime();
+			if(isSessionCompleted(startTime, bookingDuration)) {
+				session.setSessionStatus(sessionStatusService.getCompletedStatus());
+				session.setEndTime(new Date());
+				completedSessions.add(session);
+			}
+		}
+		sessionRepository.save(completedSessions);
+	}
+
+	private boolean isSessionCompleted(Date startTime, int bookingDuration) {
+		Date currentTime = new Date();
+		long timeDifferenceInMinutes = TimeUnit.MILLISECONDS.toMinutes(currentTime.getTime() - startTime.getTime());
+		return timeDifferenceInMinutes >= bookingDuration;
 	}
 
 

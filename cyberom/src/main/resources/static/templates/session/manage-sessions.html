@@ -4,7 +4,7 @@
 			<h2>Manage Sessions</h2>
 		</div>
 		<div class="col-md-2">
-			<a href="#/addSession" class="btn btn-primary pull-right">Add Session</a>
+			<a ui-sref="createSession()" class="btn btn-primary pull-right">Add Session</a>
 		</div>
 	</div>
 	<div class="row">
@@ -66,6 +66,7 @@
 					<th>End Time</th>
 					<th>Remaining Time</th>
 					<th>Status</th>
+					<th>Booking Duration</th>
 					<th></th>
 				</tr>
 				</thead>
@@ -73,9 +74,10 @@
 					<td>{{($index+1) + (sessionSearchFilter.pageNumber-1) * sessionSearchFilter.pageSize}}</td>
 					<td>{{session.visitor.firstName}} {{session.visitor.lastName}}</td>
 					<td>{{session.startTime | date:'MMM d, y h:mm a'}}</td>
-					<td>{{visitor.sex}}</td>
+					<td>{{session.endTime | date:'MMM d, y h:mm a'}}</td>
 					<td>{{visitor.mobile}}</td>
 					<td>{{session.sessionStatus.name}}</td>
+					<td>{{session.bookingDuration}}</td>
 					<td>
 						<a href="#/editVisitor" ui-sref="editVisitor({visitorId: visitor.id})" class="btn btn-primary">Edit</a> &nbsp;
 					</td>

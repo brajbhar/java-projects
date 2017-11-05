@@ -12,6 +12,7 @@ import org.cybercafe.service.CybercafeService;
 import org.cybercafe.service.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,15 +48,16 @@ public class VisitorController {
 	
 		
 	@RequestMapping(value = REST_VISITORS_URL, method = RequestMethod.GET)
-	public Page<Visitor> getVisitorsByPaging(
+	public Page<Visitor> getVisitors(
 			@RequestParam("mobileNumber") String mobileNumber,
 			@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName,
 			@RequestParam("pageNumber") Integer pageNumber,
 			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam(value = "isPagingRequired", required = false, defaultValue = "false") 
+			boolean isPagingRequired,
 			Principal principal){
-		String username = principal.getName();
-		Cybercafe cybercafe = cybercafeService.getCybercafe(username);
+		Cybercafe cybercafe = getCybercafe(principal);
 		VisitorSearchFilter visitorSearchFilter = new VisitorSearchFilter();
 		visitorSearchFilter.setMobile(mobileNumber);
 		visitorSearchFilter.setFirstName(firstName);
@@ -63,7 +65,10 @@ public class VisitorController {
 		visitorSearchFilter.setPageNumber(pageNumber);
 		visitorSearchFilter.setPageSize(pageSize);
 		visitorSearchFilter.setCybercafe(cybercafe);
-		return visitorService.getVisitors(visitorSearchFilter);
+		if(isPagingRequired) {
+			visitorService.getVisitors(visitorSearchFilter);
+		}
+		return new PageImpl<>(visitorService.getVisitorsWithoutPaging(visitorSearchFilter));
 	}
 	
 	@RequestMapping(value = REST_VISITORS_URL + "/{visitorId}", method = RequestMethod.GET)
@@ -74,6 +79,18 @@ public class VisitorController {
 	@RequestMapping(value = "rest/idcardtypes", method = RequestMethod.GET)
 	public List<IDCardType> getIdCardTypes(Principal principal) {
 		return visitorService.getIDcardTypes();
+	}
+	
+	@RequestMapping(value = "rest/allVisitors")
+	public List<Visitor> getAllVisitorsByCybercafe(Principal principal) {
+		Cybercafe cybercafe = getCybercafe(principal);
+		return visitorService.getVisitorsByCybercafe(cybercafe);
+	}
+
+	private Cybercafe getCybercafe(Principal principal) {
+		String username = principal.getName();
+		Cybercafe cybercafe = cybercafeService.getCybercafe(username);
+		return cybercafe;
 	}
 	
 }

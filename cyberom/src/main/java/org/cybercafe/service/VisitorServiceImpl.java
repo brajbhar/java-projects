@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.cybercafe.domain.VisitorSearchFilter;
 import org.cybercafe.exception.DuplicateVisitorException;
+import org.cybercafe.model.Cybercafe;
 import org.cybercafe.model.IDCardType;
 import org.cybercafe.model.Visitor;
 import org.cybercafe.repository.IDCardTypeRepository;
@@ -68,12 +69,6 @@ public class VisitorServiceImpl implements VisitorService {
 	}
 
 	@Override
-	public List<Visitor> getVisitors() {
-		
-		return (List<Visitor>)visitorRepository.findAll();
-	}
-
-	@Override
 	public Visitor editVisitor(Visitor visitor) {
 		visitor.setUpdatedOn(new Date());
 		return visitorRepository.save(visitor);
@@ -85,6 +80,20 @@ public class VisitorServiceImpl implements VisitorService {
 		PageRequest pageRequest = new PageRequest(visitorFilter.getPageNumber(), visitorFilter.getPageSize());
 		Page<Visitor> visitors = visitorRepository.findAll(specification, pageRequest);
 		return visitors; 
+	}
+
+	@Override
+	public List<Visitor> getVisitorsByCybercafe(Cybercafe cybercafe) {
+		VisitorSearchFilter filter = new VisitorSearchFilter();
+		filter.setCybercafe(cybercafe);
+		VisitorSpecification specification = new VisitorSpecification(filter);
+		return visitorRepository.findAll(specification);
+	}
+
+	@Override
+	public List<Visitor> getVisitorsWithoutPaging(VisitorSearchFilter visitorFilter) {
+		VisitorSpecification specification = new VisitorSpecification(visitorFilter);
+		return visitorRepository.findAll(specification);
 	}
 
 }

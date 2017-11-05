@@ -22,6 +22,8 @@ public interface SessionService {
 	
 	Session completeSession(long sessionId);
 	
+	void completeSessions();
+	
 	Session getSession(Long id);
 	
 	Page<Session> getSessions(SessionSearchFilter filter);

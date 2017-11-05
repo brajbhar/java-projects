@@ -110,6 +110,13 @@ public class VisitorRepositoryTest extends AbstractRepositoryTest {
 	}
 	
 	@Test
+	public void testFindAllWithAllRecordsOnSinglePage() {
+		VisitorSearchFilter filter = new VisitorSearchFilter();
+		filter.setCybercafe(cybercafeRepository.findOne(1L));
+		VisitorSpecification specification = new VisitorSpecification(filter);
+	}
+	
+	@Test
 	public void testGetFindOne() {
 		 
 	}

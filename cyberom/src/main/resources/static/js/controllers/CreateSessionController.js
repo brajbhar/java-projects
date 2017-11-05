@@ -7,11 +7,13 @@ module.controller('CreateSessionController', function($scope, $location, $stateP
 	
 	$scope.session = {};
 	$scope.session.visitor = {};
+	$scope.visitors = [];
 	$scope.session.visitor.id = $stateParams.visitorId;
 	$scope.availableSystems = [];
 	$scope.systemSearchFilter = {};
 	
 	$scope.bookingDurations = [30, 60];
+	
 	
 	VisitorService.getVisitor($scope.session.visitor.id)
 	.then(function(visitor){

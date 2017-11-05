@@ -71,6 +71,11 @@ public class VisitorServiceTest {
 	}
 	
 	@Test
+	public void testGetVisitors() {
+		
+	}
+	
+	@Test
 	public void testGetIDCardTypes() {
 		
 	}

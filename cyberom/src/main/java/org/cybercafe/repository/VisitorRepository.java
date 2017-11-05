@@ -27,5 +27,6 @@ public interface VisitorRepository extends PagingAndSortingRepository<Visitor, L
 	Page<Visitor> findAll(Specification specification, Pageable pageable);
 	
 	List<Visitor> findAll(Specification specification);
+	
 
 }
