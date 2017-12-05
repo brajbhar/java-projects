@@ -1,0 +1,12 @@
+
+ 
+<div class="thumbnail">
+	<div id="ng-camera-feed" ng-hide="showCapturedPicture"></div>
+	<div>
+    	<img data-ng-src="{{snapshot}}" ng-show="showCapturedPicture" height="240" width="320"/>
+    	</div>
+    	</div>
+<div>    
+<button id="ng-camera-action" ng-click="startCamera()" class="btn btn-primary">Start Camera</button>
+    	<button id="ng-camera-action" ng-click="getSnapshot()" class="btn btn-primary">{{actionMessage}}</button>
+    	</div>

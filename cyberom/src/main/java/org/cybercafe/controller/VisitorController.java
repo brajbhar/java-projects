@@ -52,8 +52,8 @@ public class VisitorController {
 			@RequestParam("mobileNumber") String mobileNumber,
 			@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName,
-			@RequestParam("pageNumber") Integer pageNumber,
-			@RequestParam("pageSize") Integer pageSize,
+			@RequestParam(value = "pageNumber", required = true, defaultValue = "1") Integer pageNumber,
+			@RequestParam(value = "pageSize", required = true, defaultValue = "5")  Integer pageSize,
 			@RequestParam(value = "isPagingRequired", required = false, defaultValue = "false") 
 			boolean isPagingRequired,
 			Principal principal){

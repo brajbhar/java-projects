@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>CyberOM</title>
+<link rel="stylesheet" href="css/bootstrap/dist/css/bootstrap-united.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body ng-app="cyberom">
+<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationController">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">CyberOM</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li ui-sref-active="active">
+              <a ui-sref="listVisitors">Visitors</a>
+            </li>
+             <li ui-sref-active="active">
+              <a ui-sref="listSystems">Systems</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="listSessions">Sessions</a>
+            </li>
+            <li ui-sref-active="active">
+              <a href="../help/">Contact Us</a>
+            </li>
+            <li ui-sref-active="active">
+              <a href="http://news.bootswatch.com">About Us</a>
+            </li>
+            <li ui-sref-active="active">
+              <a href="http://news.bootswatch.com">Blog</a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Flatly <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="download">
+                <li><a href="http://jsfiddle.net/bootswatch/jmg3gykg/">Open Sandbox</a></li>
+                <li class="divider"></li>
+                <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
+                <li><a href="./bootstrap.css">bootstrap.css</a></li>
+                <li class="divider"></li>
+                <li><a href="./variables.less">variables.less</a></li>
+                <li><a href="./bootswatch.less">bootswatch.less</a></li>
+                <li class="divider"></li>
+                <li><a href="./_variables.scss">_variables.scss</a></li>
+                <li><a href="./_bootswatch.scss">_bootswatch.scss</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li ui-sref-active="active" ng-hide="authenticated"><a ui-sref="register">Register</a></li>
+            <li ng-hide="authenticated"><a href="#/login">Login</a></li>
+            <li ng-show="authenticated"><a href="" ng-click="logout()">Logout</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+<br><br><br>
+<span us-spinner spinner-key="spinner"></span>
+<div ui-view class="container-fluid" ></div>
+
+
+      <footer id="footer" class="container-fluid footer">
+      	<div class="container text-center">
+      	<p>&copy; Company 2016</p>
+        </div>
+      </footer>
+
+	<script src="js/jquery/dist/jquery.min.js"></script>
+ 	<script src="css/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/angular-ui-router/angular-ui-router.js"></script>
+    <script src="js/webcamjs/webcam.js"></script>
+    <script src="js/spin.js/spin.js"></script>
+	<script src="js/angular-spinner/angular-spinner.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/notify.js"></script>
+    <script src="js/angular/angular-messages.js"></script>
+    
+    <!-- Services -->
+    <script src="js/services/StateService.js"></script>
+    <script src="js/services/CybercafeService.js"></script>
+    <script src="js/services/VisitorService.js"></script>
+    <script src="js/services/SystemService.js"></script>
+    <script src="js/services/SessionService.js"></script>
+    
+    <!-- Utils -->
+    <script src="js/services/FilterAndPaginationUtils.js"></script>
+    <script src="js/services/SpinnerUtils.js"></script>
+    <script src="js/services/RequestUtils.js"></script>
+    
+    <!-- Controller -->
+    <script src="js/controllers/NavigationController.js"></script>
+    <script src="js/controllers/RegistrationController.js"></script>
+    <script src="js/controllers/ListVisitorController.js"></script>
+    <script src="js/controllers/AddVisitorController.js"></script>
+    <script src="js/controllers/EditVisitorController.js"></script>
+    <script src="js/controllers/ListSystemController.js"></script>
+    <script src="js/controllers/AddSystemController.js"></script>
+    <script src="js/controllers/EditSystemController.js"></script>
+    <script src="js/controllers/CreateSessionController.js"></script>
+    <script src="js/controllers/ListSessionController.js"></script>
+    <script src="js/directives/DuplicateDataValidator.js"></script>
+    <script src="js/directives/NumericValidator.js"></script>
+    <script src="js/directives/ngCamera.js"></script>
+</body>
+</html>
